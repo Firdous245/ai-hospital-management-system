@@ -1,0 +1,641 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Symptom Checker | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+    .symptom-page {
+        padding: 60px 0;
+        background: #f7fbfb;
+        min-height: 80vh;
+    }
+
+    .symptom-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .symptom-header h1 {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .symptom-header p {
+        color: #666;
+        font-size: 17px;
+    }
+
+    .symptom-box {
+        background: white;
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .symptom-box h2 {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+
+    .symptom-info {
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .symptom-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .symptom-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px;
+        border: 1px solid #e5eeee;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.25s;
+        background: #fff;
+    }
+
+    .symptom-item:hover {
+        border-color: #20aaa5;
+        background: #f3ffff;
+        transform: translateY(-2px);
+    }
+
+    .symptom-item input {
+        width: 18px;
+        height: 18px;
+        accent-color: #20aaa5;
+    }
+
+    .symptom-name {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .selected-count {
+        margin-top: 22px;
+        font-weight: 600;
+        color: #168d89;
+    }
+
+    .analyze-btn {
+        margin-top: 25px;
+        border: none;
+        background: #20aaa5;
+        color: white;
+        padding: 14px 28px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+
+    .analyze-btn:hover {
+        background: #168d89;
+        transform: translateY(-2px);
+    }
+
+    .result-box {
+        margin-top: 35px;
+        background: white;
+        padding: 35px;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .result-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .result-row {
+        margin-bottom: 18px;
+        font-size: 17px;
+    }
+
+    .result-row strong {
+        color: #222;
+    }
+
+    .risk-badge {
+        display: inline-block;
+        padding: 6px 15px;
+        border-radius: 20px;
+        background: #fff1c7;
+        color: #8a6500;
+        font-weight: 700;
+    }
+
+    .guidance {
+        line-height: 1.7;
+    }
+
+    .medical-note {
+        margin-top: 25px;
+        padding: 15px 18px;
+        border-radius: 10px;
+        background: #f3f6f7;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .medical-note i {
+        margin-right: 7px;
+    }
+
+    .empty-warning {
+        margin-top: 20px;
+        padding: 14px;
+        border-radius: 10px;
+        background: #fff1f1;
+        color: #b42318;
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+
+        .symptom-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .symptom-header h1 {
+            font-size: 32px;
+        }
+
+        .symptom-box,
+        .result-box {
+            padding: 25px;
+        }
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="symptom-page">
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="symptom-header">
+
+            <span class="section-tag">
+                ARTIFICIAL INTELLIGENCE
+            </span>
+
+            <h1>
+                AI Symptom Checker
+            </h1>
+
+            <p>
+                Select your symptoms for preliminary health guidance.
+            </p>
+
+        </div>
+
+
+        <!-- SYMPTOM FORM -->
+
+        <div class="symptom-box">
+
+            <h2>
+                Select Your Symptoms
+            </h2>
+
+            <p class="symptom-info">
+                You can select one or more symptoms.
+            </p>
+
+
+            <form method="POST"
+                  action="{{ url_for('ai_symptom_checker') }}"
+                  id="symptomForm">
+
+
+                <div class="symptom-grid">
+
+
+                    <!-- 01 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="fever">
+                        <span class="symptom-name">
+                            Fever
+                        </span>
+                    </label>
+
+
+                    <!-- 02 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="cough">
+                        <span class="symptom-name">
+                            Cough
+                        </span>
+                    </label>
+
+
+                    <!-- 03 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="sore_throat">
+                        <span class="symptom-name">
+                            Sore Throat
+                        </span>
+                    </label>
+
+
+                    <!-- 04 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="headache">
+                        <span class="symptom-name">
+                            Headache
+                        </span>
+                    </label>
+
+
+                    <!-- 05 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="chest_pain">
+                        <span class="symptom-name">
+                            Chest Pain
+                        </span>
+                    </label>
+
+
+                    <!-- 06 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="shortness_of_breath">
+                        <span class="symptom-name">
+                            Shortness of Breath
+                        </span>
+                    </label>
+
+
+                    <!-- 07 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="stomach_pain">
+                        <span class="symptom-name">
+                            Stomach Pain
+                        </span>
+                    </label>
+
+
+                    <!-- 08 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="nausea">
+                        <span class="symptom-name">
+                            Nausea
+                        </span>
+                    </label>
+
+
+                    <!-- 09 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="vomiting">
+                        <span class="symptom-name">
+                            Vomiting
+                        </span>
+                    </label>
+
+
+                    <!-- 10 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="body_ache">
+                        <span class="symptom-name">
+                            Body Ache
+                        </span>
+                    </label>
+
+
+                    <!-- 11 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="fatigue">
+                        <span class="symptom-name">
+                            Fatigue
+                        </span>
+                    </label>
+
+
+                    <!-- 12 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="dizziness">
+                        <span class="symptom-name">
+                            Dizziness
+                        </span>
+                    </label>
+
+
+                    <!-- 13 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="skin_rash">
+                        <span class="symptom-name">
+                            Skin Rash
+                        </span>
+                    </label>
+
+
+                    <!-- 14 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="itching">
+                        <span class="symptom-name">
+                            Itching
+                        </span>
+                    </label>
+
+
+                    <!-- 15 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="joint_pain">
+                        <span class="symptom-name">
+                            Joint Pain
+                        </span>
+                    </label>
+
+
+                    <!-- 16 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="back_pain">
+                        <span class="symptom-name">
+                            Back Pain
+                        </span>
+                    </label>
+
+
+                    <!-- 17 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="cold">
+                        <span class="symptom-name">
+                            Cold
+                        </span>
+                    </label>
+
+
+                    <!-- 18 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="weakness">
+                        <span class="symptom-name">
+                            Weakness
+                        </span>
+                    </label>
+
+
+                    <!-- 19 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="loss_of_appetite">
+                        <span class="symptom-name">
+                            Loss of Appetite
+                        </span>
+                    </label>
+
+
+                    <!-- 20 -->
+
+                    <label class="symptom-item">
+                        <input type="checkbox"
+                               name="symptoms"
+                               value="sleep_problem">
+                        <span class="symptom-name">
+                            Sleep Problem
+                        </span>
+                    </label>
+
+
+                </div>
+
+
+                <div class="selected-count">
+                    Selected Symptoms:
+                    <span id="count">0</span>
+                </div>
+
+
+                <div class="empty-warning" id="warning">
+                    Please select at least one symptom.
+                </div>
+
+
+                <button type="submit"
+                        class="analyze-btn">
+
+                    <i class="fa-solid fa-brain"></i>
+                    Analyze Symptoms
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- AI RESULT -->
+
+        {% if result %}
+
+        <div class="result-box">
+
+            <div class="result-title">
+
+                <i class="fa-solid fa-brain"></i>
+                AI Analysis Result
+
+            </div>
+
+
+            <div class="result-row">
+
+                <strong>
+                    Possible Condition:
+                </strong>
+
+                {{ result.condition }}
+
+            </div>
+
+
+            <div class="result-row">
+
+                <strong>
+                    Risk Level:
+                </strong>
+
+                <span class="risk-badge">
+                    {{ result.risk }}
+                </span>
+
+            </div>
+
+
+            <div class="result-row guidance">
+
+                <strong>
+                    Guidance:
+                </strong>
+
+                {{ result.guidance }}
+
+            </div>
+
+
+            <div class="medical-note">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                This tool provides preliminary guidance only and
+                does not replace professional medical diagnosis
+                or consultation with a qualified healthcare
+                professional.
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+<script>
+
+    const checkboxes =
+        document.querySelectorAll(
+            'input[name="symptoms"]'
+        );
+
+    const count =
+        document.getElementById("count");
+
+    const form =
+        document.getElementById("symptomForm");
+
+    const warning =
+        document.getElementById("warning");
+
+
+    function updateCount() {
+
+        const selected =
+            document.querySelectorAll(
+                'input[name="symptoms"]:checked'
+            ).length;
+
+        count.textContent = selected;
+
+        if (selected > 0) {
+            warning.style.display = "none";
+        }
+
+    }
+
+
+    checkboxes.forEach(function(box) {
+
+        box.addEventListener(
+            "change",
+            updateCount
+        );
+
+    });
+
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+            const selected =
+                document.querySelectorAll(
+                    'input[name="symptoms"]:checked'
+                ).length;
+
+            if (selected === 0) {
+
+                event.preventDefault();
+
+                warning.style.display = "block";
+
+                window.scrollTo({
+                    top: warning.offsetTop - 150,
+                    behavior: "smooth"
+                });
+
+            }
+
+        }
+    );
+
+</script>
+
+{% endblock %}

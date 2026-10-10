@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+
+{% block title %}
+AI Innovations | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/innovations.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ================= PAGE HEADER ================= -->
+
+<section class="page-header innovation-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+            ARTIFICIAL INTELLIGENCE
+        </span>
+
+        <h1 class="page-title mt-3">
+            AI-Powered Healthcare Innovations
+        </h1>
+
+        <p class="page-header-text">
+            Intelligent solutions designed to improve patient care,
+            hospital efficiency and healthcare decision making.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= AI INNOVATIONS ================= -->
+
+<section class="innovations-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+                OUR AI SOLUTIONS
+            </span>
+
+            <h2 class="section-title mt-2">
+                Intelligent Features for Smarter Healthcare
+            </h2>
+
+            <p class="section-text">
+                Explore the AI-powered features developed to solve
+                real-world challenges in hospital management.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- 01 AI Symptom Checker -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="innovation-card">
+
+                    <div class="innovation-number">
+                        01
+                    </div>
+
+                    <div class="innovation-icon">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+
+                    <h4>
+                        AI Symptom Checker
+                    </h4>
+
+                    <p>
+                        Helps patients understand possible health
+                        conditions based on the symptoms they enter
+                        and provides guidance on the appropriate
+                        next step.
+                    </p>
+
+                    <span class="innovation-status">
+                        AI Feature
+                    </span>
+                    <a
+                    href="{{ url_for('ai_symptom_checker') }}"
+                      class="btn custom-btn mt-3">
+
+                          Try Symptom Checker
+
+                       <i class="fa-solid fa-arrow-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 02 AI Healthcare Assistant -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="innovation-card">
+
+                    <div class="innovation-number">
+                        02
+                    </div>
+
+                    <div class="innovation-icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                    <h4>
+                        AI Healthcare Assistant
+                    </h4>
+
+                    <p>
+                        Provides patients with quick answers to
+                        general healthcare and hospital-related
+                        questions through an intelligent assistant.
+                    </p>
+
+                    <span class="innovation-status">
+                        AI Assistant
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 03 Smart Queue -->
+             <a href="{{ url_for('smart_queue') }}" class="innovation-link">
+
+    <div class="innovation-card">
+
+        <div class="innovation-number">
+            03
+        </div>
+
+        <div class="innovation-icon">
+            <i class="fa-solid fa-users-viewfinder"></i>
+        </div>
+
+        <h4>
+            Smart Queue Management
+        </h4>
+
+        <p>
+            Helps manage patient queues intelligently
+            and provides better waiting-time management
+            for hospital departments.
+        </p>
+
+        <span class="innovation-status">
+            Smart Management
+        </span>
+
+    </div>
+
+</a>
+
+           
+
+            
+
+
+
+            <!-- 04 Medicine Reminder -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="innovation-card">
+
+                    <div class="innovation-number">
+                        04
+                    </div>
+
+                    <div class="innovation-icon">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+
+                    <h4>
+                        Medicine Reminder
+                    </h4>
+
+                    <p>
+                        Helps patients remember their prescribed
+                        medicine schedules and supports better
+                        medication adherence.
+                    </p>
+
+                    <span class="innovation-status">
+                        Patient Support
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 05 Hospital Crowd Prediction -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="innovation-card">
+
+                    <div class="innovation-number">
+                        05
+                    </div>
+
+                    <div class="innovation-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <h4>
+                        Hospital Crowd Prediction
+                    </h4>
+
+                    <p>
+                        Analyses historical hospital data to estimate
+                        expected patient traffic and help staff plan
+                        resources more effectively.
+                    </p>
+
+                    <span class="innovation-status">
+                        Prediction
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 06 Medicine Shortage Prediction -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="innovation-card">
+
+                    <div class="innovation-number">
+                        06
+                    </div>
+
+                    <div class="innovation-icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+
+                    <h4>
+                        Medicine Shortage Prediction
+                    </h4>
+
+                    <p>
+                        Uses medicine usage and inventory information
+                        to identify medicines that may require
+                        restocking in the future.
+                    </p>
+
+                    <span class="innovation-status">
+                        Forecasting
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 07 Emergency Priority Score -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="innovation-card innovation-card-highlight">
+
+                    <div class="innovation-number">
+                        07
+                    </div>
+
+                    <div class="innovation-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+
+                    <h4>
+                        Emergency Priority Score
+                    </h4>
+
+                    <p>
+                        Helps hospital staff prioritize emergency
+                        cases using patient information and defined
+                        clinical priority factors.
+                    </p>
+
+                    <span class="innovation-status">
+                        Emergency AI
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= AI WORKFLOW ================= -->
+
+<section class="ai-workflow-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+                HOW AI HELPS
+            </span>
+
+            <h2 class="section-title mt-2">
+                From Data to Intelligent Decisions
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <div class="workflow-card">
+
+                    <div class="workflow-icon">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+
+                    <h4>
+                        01. Collect Data
+                    </h4>
+
+                    <p>
+                        Relevant patient, hospital and inventory
+                        information is collected by the system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="workflow-card">
+
+                    <div class="workflow-icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <h4>
+                        02. Analyse
+                    </h4>
+
+                    <p>
+                        AI and data-processing techniques analyse
+                        the available information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="workflow-card">
+
+                    <div class="workflow-icon">
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </div>
+
+                    <h4>
+                        03. Generate Insights
+                    </h4>
+
+                    <p>
+                        The system provides useful predictions,
+                        recommendations or information to support
+                        hospital operations.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section py-5">
+
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+            <h2>
+                Experience Intelligent Healthcare
+            </h2>
+
+            <p>
+                Our AI innovations are designed to make hospital
+                management smarter and more efficient.
+            </p>
+
+            <a href="{{ url_for('appointment') }}"
+               class="btn custom-btn btn-lg mt-3">
+
+                Book an Appointment
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

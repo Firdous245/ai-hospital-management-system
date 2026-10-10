@@ -1,0 +1,484 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About Us | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/about.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================================
+     PAGE HEADER
+================================ -->
+
+<section class="page-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+            ABOUT AI HOSPITAL
+        </span>
+
+        <h1 class="page-title mt-3">
+            Smarter Healthcare Through Technology
+        </h1>
+
+        <p class="page-header-text">
+
+            An intelligent hospital management system designed
+            to connect patients, doctors and hospital operations
+            through one powerful digital platform.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     ABOUT MAIN
+================================ -->
+
+<section class="about-main-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- IMAGE -->
+
+            <div class="col-lg-6">
+
+                <div class="about-image-wrapper">
+
+                    <img
+                        src="{{ url_for('static', filename='images/about.png') }}"
+                        class="img-fluid about-main-image"
+                        alt="AI Hospital">
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="col-lg-6">
+
+                <span class="section-tag">
+                    OUR SYSTEM
+                </span>
+
+                <h2 class="section-title mt-3">
+                    Intelligent Hospital Management
+                </h2>
+
+                <p class="about-text">
+
+                    AI Hospital Management System is a modern
+                    digital healthcare platform designed to
+                    simplify and improve hospital management.
+
+                </p>
+
+                <p class="about-text">
+
+                    Our system connects patients, doctors,
+                    administrators and hospital services through
+                    one centralized platform.
+
+                </p>
+
+                <p class="about-text">
+
+                    By combining hospital management with
+                    artificial intelligence, the platform helps
+                    improve healthcare operations, patient
+                    experience and decision making.
+
+                </p>
+
+
+                <!-- FEATURES -->
+
+                <div class="about-features">
+
+                    <div class="about-feature">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Smart Patient Management
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            AI-Based Healthcare Solutions
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Digital Medical Records
+                        </span>
+
+                    </div>
+
+
+                    <div class="about-feature">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>
+                            Secure Hospital Data
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     OUR PURPOSE
+================================ -->
+
+<section class="mission-section">
+
+    <div class="container">
+
+        <div class="text-center section-heading">
+
+            <span class="section-tag">
+                OUR PURPOSE
+            </span>
+
+            <h2 class="section-title mt-2">
+                Making Healthcare Smarter
+            </h2>
+
+            <p class="section-text">
+
+                Our goal is to use technology and artificial
+                intelligence to create a more efficient,
+                secure and patient-focused healthcare environment.
+
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- MISSION -->
+
+            <div class="col-md-4">
+
+                <div class="about-info-card">
+
+                    <div class="about-icon">
+
+                        <i class="fa-solid fa-bullseye"></i>
+
+                    </div>
+
+                    <h4>
+                        Our Mission
+                    </h4>
+
+                    <p>
+
+                        To provide hospitals with an intelligent
+                        digital platform that simplifies healthcare
+                        management and improves operational efficiency.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- VISION -->
+
+            <div class="col-md-4">
+
+                <div class="about-info-card">
+
+                    <div class="about-icon">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </div>
+
+                    <h4>
+                        Our Vision
+                    </h4>
+
+                    <p>
+
+                        To create a smarter healthcare environment
+                        where technology supports better services,
+                        faster operations and improved patient care.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- INNOVATION -->
+
+            <div class="col-md-4">
+
+                <div class="about-info-card">
+
+                    <div class="about-icon">
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                    </div>
+
+                    <h4>
+                        Innovation
+                    </h4>
+
+                    <p>
+
+                        We integrate artificial intelligence into
+                        hospital workflows to provide intelligent
+                        solutions for modern healthcare management.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     OUR CAPABILITIES
+================================ -->
+
+<section class="capabilities-section">
+
+    <div class="container">
+
+        <div class="text-center section-heading">
+
+            <span class="section-tag">
+                OUR CAPABILITIES
+            </span>
+
+            <h2 class="section-title mt-2">
+                Everything in One Platform
+            </h2>
+
+            <p class="section-text">
+
+                AI Hospital brings essential hospital management
+                services together in one centralized system.
+
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- PATIENT -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="capability-card">
+
+                    <div class="capability-icon">
+
+                        <i class="fa-solid fa-user-injured"></i>
+
+                    </div>
+
+                    <h5>
+                        Patient Management
+                    </h5>
+
+                    <p>
+
+                        Manage patient information,
+                        appointments and healthcare details
+                        efficiently.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCTOR -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="capability-card">
+
+                    <div class="capability-icon">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+                    <h5>
+                        Doctor Management
+                    </h5>
+
+                    <p>
+
+                        Organize doctor information,
+                        specializations and availability
+                        through a digital system.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="capability-card">
+
+                    <div class="capability-icon">
+
+                        <i class="fa-solid fa-brain"></i>
+
+                    </div>
+
+                    <h5>
+                        AI Solutions
+                    </h5>
+
+                    <p>
+
+                        Use intelligent AI features to
+                        support modern healthcare
+                        management.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="capability-card">
+
+                    <div class="capability-icon">
+
+                        <i class="fa-solid fa-shield-heart"></i>
+
+                    </div>
+
+                    <h5>
+                        Secure Data
+                    </h5>
+
+                    <p>
+
+                        Manage important healthcare
+                        information through a secure
+                        digital platform.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     CTA
+================================ -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+            <span class="cta-tag">
+                AI POWERED HEALTHCARE
+            </span>
+
+            <h2>
+                Ready for Smarter Healthcare?
+            </h2>
+
+            <p>
+
+                Explore our intelligent healthcare
+                solutions and discover how AI can
+                transform hospital management.
+
+            </p>
+
+            <a href="{{ url_for('innovations') }}"
+               class="btn custom-btn btn-lg mt-3">
+
+                Explore AI Innovations
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

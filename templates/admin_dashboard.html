@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+<style>
+    .dashboard-section {
+        padding: 50px 0 80px;
+        background: #f7fbfb;
+        min-height: 80vh;
+    }
+
+    .welcome-banner {
+        background: linear-gradient(135deg, #20b8ad, #0d8f8a);
+        color: white;
+        border-radius: 22px;
+        padding: 35px 40px;
+        margin-bottom: 45px;
+        box-shadow: 0 12px 30px rgba(13, 143, 138, 0.18);
+    }
+
+    .welcome-banner h1 {
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .welcome-banner p {
+        margin: 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+
+    .dashboard-heading {
+        margin-bottom: 25px;
+    }
+
+    .dashboard-heading h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #163b3b;
+        margin-bottom: 5px;
+    }
+
+    .dashboard-heading p {
+        color: #789090;
+        margin: 0;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        height: 100%;
+        border: 1px solid #e8eeee;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-icon {
+        width: 55px;
+        height: 55px;
+        border-radius: 14px;
+        background: #e4f8f6;
+        color: #16a69f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 23px;
+        margin-bottom: 18px;
+    }
+
+    .stat-card h3 {
+        font-size: 30px;
+        font-weight: 700;
+        color: #173d3d;
+        margin-bottom: 5px;
+    }
+
+    .stat-card p {
+        color: #7c9090;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .quick-actions {
+        margin-top: 50px;
+    }
+
+    .quick-actions h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #163b3b;
+        margin-bottom: 25px;
+    }
+
+    .action-btn {
+        background: white;
+        border: 1px solid #e4eeee;
+        border-radius: 16px;
+        padding: 25px 20px;
+        min-height: 135px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #163b3b;
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-5px);
+        color: #0c9991;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+        border-color: #bfe8e5;
+    }
+
+    .action-btn i {
+        font-size: 30px;
+        color: #16aaa2;
+        margin-bottom: 14px;
+    }
+
+    .action-btn span {
+        font-weight: 600;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-section {
+            padding: 30px 15px 60px;
+        }
+
+        .welcome-banner {
+            padding: 25px;
+        }
+
+        .welcome-banner h1 {
+            font-size: 27px;
+        }
+
+        .dashboard-heading h2 {
+            font-size: 26px;
+        }
+
+        .quick-actions h2 {
+            font-size: 24px;
+        }
+    }
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="dashboard-section">
+
+    <div class="container">
+
+        <div class="welcome-banner">
+            <h1>Welcome, Admin 👋</h1>
+            <p>Manage your AI Hospital system from your admin dashboard.</p>
+        </div>
+
+        <div class="dashboard-heading">
+            <h2>Admin Dashboard</h2>
+            <p>Hospital management overview</p>
+        </div>
+
+        <!-- ================= STATISTICS ================= -->
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3>{{ total_users|default(0) }}</h3>
+                    <p>Total Users</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-hospital-user"></i>
+                    </div>
+                    <h3>{{ total_patients|default(0) }}</h3>
+                    <p>Total Patients</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3>{{ total_doctors|default(0) }}</h3>
+                    <p>Total Doctors</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3>{{ total_appointments|default(0) }}</h3>
+                    <p>Appointments</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <div class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <div class="row g-4">
+
+                <!-- ADMIN DOCTORS -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('admin_doctors') }}" class="action-btn">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>Manage Doctors</span>
+                    </a>
+                </div>
+
+
+                <!-- ADMIN PATIENTS -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('admin_patients') }}" class="action-btn">
+                        <i class="fa-solid fa-hospital-user"></i>
+                        <span>Manage Patients</span>
+                    </a>
+                </div>
+
+
+                <!-- ADMIN APPOINTMENTS -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('admin_appointments') }}" class="action-btn">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>Appointments</span>
+                    </a>
+                </div>
+
+
+                <!-- CONTACT MESSAGES -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('admin_contact_messages') }}" class="action-btn">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact Messages</span>
+                    </a>
+                </div>
+
+
+                <!-- SERVICES -->
+                <div class="col-md-6 col-lg-3">
+                   <a href="{{ url_for('admin_services') }}" class="action-btn">
+                      <i class="fa-solid fa-stethoscope"></i>
+                      <span>Manage Services</span>
+                   </a>
+                </div>
+
+                <!-- AI INNOVATIONS -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('admin_innovations') }}" class="action-btn">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>AI Innovations</span>
+                    </a>
+                </div>
+
+
+                <!-- VIEW WEBSITE -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('home') }}" class="action-btn">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>View Website</span>
+                    </a>
+                </div>
+
+
+                <!-- LOGOUT -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('logout') }}" class="action-btn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,676 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Doctors | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/doctors.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="page-header doctors-header">
+
+    <div class="container text-center">
+
+        <div class="doctors-header-content">
+
+            <span class="section-tag">
+                <i class="fa-solid fa-user-doctor"></i>
+                OUR MEDICAL TEAM
+            </span>
+
+            <h1 class="page-title mt-3">
+                Meet Our Doctors
+            </h1>
+
+            <p class="page-header-text">
+                Experienced healthcare professionals working
+                together to provide trusted, patient-focused
+                and technology-enabled healthcare.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DOCTORS SECTION
+===================================================== -->
+
+<section class="doctors-section">
+
+    <div class="container">
+
+        <div class="doctors-intro text-center">
+
+            <span class="section-tag">
+                SPECIALISTS
+            </span>
+
+            <h2 class="section-title mt-2">
+                Our Healthcare Experts
+            </h2>
+
+            <p class="section-text">
+                Connect with qualified doctors across different
+                medical departments and choose the right
+                specialist for your healthcare needs.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- =================================================
+                 DOCTOR 1
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-image-wrapper">
+
+                        <img
+                            src="{{ url_for('static', filename='images/doctor1.jpg') }}"
+                            alt="Dr. Sarah Ahmed"
+                            class="doctor-image">
+
+                        <span class="doctor-status">
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-content">
+
+                        <span class="doctor-speciality">
+                            CARDIOLOGY
+                        </span>
+
+                        <h4>
+                            Dr. Sarah Ahmed
+                        </h4>
+
+                        <p class="doctor-role">
+                            Senior Cardiologist
+                        </p>
+
+
+                        <div class="doctor-info">
+
+                            <div>
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>
+                                    12+ Years Experience
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-hospital"></i>
+                                <span>
+                                    Cardiology Department
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="btn custom-btn doctor-btn">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Book Appointment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DOCTOR 2
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-image-wrapper">
+
+                        <img
+                            src="{{ url_for('static', filename='images/doctor2.jpg') }}"
+                            alt="Dr. Arjun Rao"
+                            class="doctor-image">
+
+                        <span class="doctor-status">
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-content">
+
+                        <span class="doctor-speciality">
+                            NEUROLOGY
+                        </span>
+
+                        <h4>
+                            Dr. Arjun Rao
+                        </h4>
+
+                        <p class="doctor-role">
+                            Neurologist
+                        </p>
+
+
+                        <div class="doctor-info">
+
+                            <div>
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>
+                                    10+ Years Experience
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-hospital"></i>
+                                <span>
+                                    Neurology Department
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="btn custom-btn doctor-btn">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Book Appointment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DOCTOR 3
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-image-wrapper">
+
+                        <img
+                            src="{{ url_for('static', filename='images/doctor3.jpg') }}"
+                            alt="Dr. Priya Sharma"
+                            class="doctor-image">
+
+                        <span class="doctor-status">
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-content">
+
+                        <span class="doctor-speciality">
+                            PEDIATRICS
+                        </span>
+
+                        <h4>
+                            Dr. Priya Sharma
+                        </h4>
+
+                        <p class="doctor-role">
+                            Pediatrician
+                        </p>
+
+
+                        <div class="doctor-info">
+
+                            <div>
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>
+                                    8+ Years Experience
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-hospital"></i>
+                                <span>
+                                    Pediatrics Department
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="btn custom-btn doctor-btn">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Book Appointment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DOCTOR 4
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-image-wrapper">
+
+                        <img
+                            src="{{ url_for('static', filename='images/doctor4.jpg') }}"
+                            alt="Dr. Meera Khan"
+                            class="doctor-image">
+
+                        <span class="doctor-status">
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-content">
+
+                        <span class="doctor-speciality">
+                            DERMATOLOGY
+                        </span>
+
+                        <h4>
+                            Dr. Meera Khan
+                        </h4>
+
+                        <p class="doctor-role">
+                            Dermatologist
+                        </p>
+
+
+                        <div class="doctor-info">
+
+                            <div>
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>
+                                    9+ Years Experience
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-hospital"></i>
+                                <span>
+                                    Dermatology Department
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="btn custom-btn doctor-btn">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Book Appointment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DOCTOR 5
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-image-wrapper">
+
+                        <img
+                            src="{{ url_for('static', filename='images/doctor5.jpg') }}"
+                            alt="Dr. Rahul Verma"
+                            class="doctor-image">
+
+                        <span class="doctor-status">
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-content">
+
+                        <span class="doctor-speciality">
+                            ORTHOPEDICS
+                        </span>
+
+                        <h4>
+                            Dr. Rahul Verma
+                        </h4>
+
+                        <p class="doctor-role">
+                            Orthopedic Specialist
+                        </p>
+
+
+                        <div class="doctor-info">
+
+                            <div>
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>
+                                    11+ Years Experience
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-hospital"></i>
+                                <span>
+                                    Orthopedics Department
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="btn custom-btn doctor-btn">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Book Appointment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DOCTOR 6
+            ================================================== -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="doctor-card">
+
+                    <div class="doctor-image-wrapper">
+
+                        <img
+                            src="{{ url_for('static', filename='images/doctor6.jpg') }}"
+                            alt="Dr. Aisha Khan"
+                            class="doctor-image">
+
+                        <span class="doctor-status">
+                            Available
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-content">
+
+                        <span class="doctor-speciality">
+                            GENERAL MEDICINE
+                        </span>
+
+                        <h4>
+                            Dr. Aisha Khan
+                        </h4>
+
+                        <p class="doctor-role">
+                            General Physician
+                        </p>
+
+
+                        <div class="doctor-info">
+
+                            <div>
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>
+                                    7+ Years Experience
+                                </span>
+                            </div>
+
+                            <div>
+                                <i class="fa-solid fa-hospital"></i>
+                                <span>
+                                    General Medicine
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="btn custom-btn doctor-btn">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Book Appointment
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     WHY OUR DOCTORS
+===================================================== -->
+
+<section class="doctor-values-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+                QUALITY CARE
+            </span>
+
+            <h2 class="section-title mt-2">
+                Why Choose Our Doctors?
+            </h2>
+
+            <p class="section-text">
+                Professional care supported by modern
+                technology and a patient-first approach.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- VALUE 1 -->
+
+            <div class="col-md-4">
+
+                <div class="doctor-value-card">
+
+                    <div class="doctor-value-icon">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+                    <h4>
+                        Experienced Specialists
+                    </h4>
+
+                    <p>
+                        Our medical team includes experienced
+                        professionals from multiple healthcare
+                        specialties.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- VALUE 2 -->
+
+            <div class="col-md-4">
+
+                <div class="doctor-value-card">
+
+                    <div class="doctor-value-icon">
+
+                        <i class="fa-solid fa-heart-pulse"></i>
+
+                    </div>
+
+                    <h4>
+                        Patient Focused Care
+                    </h4>
+
+                    <p>
+                        We focus on providing comfortable,
+                        respectful and patient-centered care.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- VALUE 3 -->
+
+            <div class="col-md-4">
+
+                <div class="doctor-value-card">
+
+                    <div class="doctor-value-icon">
+
+                        <i class="fa-solid fa-microchip"></i>
+
+                    </div>
+
+                    <h4>
+                        Technology Enabled
+                    </h4>
+
+                    <p>
+                        Modern digital tools and AI solutions
+                        help support better healthcare services.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section py-5">
+
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+            <div class="cta-icon">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+            </div>
+
+            <h2>
+                Need Medical Assistance?
+            </h2>
+
+            <p>
+                Book an appointment with one of our
+                healthcare professionals today.
+            </p>
+
+            <a
+                href="{{ url_for('appointment') }}"
+                class="btn custom-btn btn-lg mt-4">
+
+                <i class="fa-solid fa-calendar-check me-2"></i>
+                Book Appointment
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

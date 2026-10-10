@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Priority Score</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-box,
+        .table-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .form-box h2,
+        .table-box h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .calculate-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .calculate-btn:hover {
+            background: #bb2d3b;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            padding: 13px;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .score {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .critical {
+            background: #f8d7da;
+            color: #842029;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .high {
+            background: #ffe5d0;
+            color: #984c0c;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .medium {
+            background: #fff3cd;
+            color: #664d03;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .low {
+            background: #d1e7dd;
+            color: #0f5132;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 11px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        .empty-message {
+            padding: 30px;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            th,
+            td {
+                padding: 9px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🚨 Emergency Priority Score</h1>
+
+    <p class="subtitle">
+        Assess patient emergency priority using vital signs
+    </p>
+
+
+    <!-- Patient Assessment Form -->
+
+    <div class="form-box">
+
+        <h2>Patient Assessment</h2>
+
+        <form action="{{ url_for('calculate_emergency_priority') }}" method="POST">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input
+                        type="text"
+                        name="patient_name"
+                        placeholder="Enter patient name"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input
+                        type="number"
+                        name="age"
+                        min="0"
+                        max="120"
+                        placeholder="Enter age"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Heart Rate (bpm)</label>
+                    <input
+                        type="number"
+                        name="heart_rate"
+                        min="0"
+                        placeholder="Example: 80"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Oxygen Level (SpO₂ %)</label>
+                    <input
+                        type="number"
+                        name="oxygen_level"
+                        min="0"
+                        max="100"
+                        placeholder="Example: 98"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Temperature (°F)</label>
+                    <input
+                        type="number"
+                        name="temperature"
+                        step="0.1"
+                        min="0"
+                        placeholder="Example: 98.6"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label>Systolic BP (mmHg)</label>
+                    <input
+                        type="number"
+                        name="systolic_bp"
+                        min="0"
+                        placeholder="Example: 120"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group full">
+                    <label>Symptoms</label>
+
+                    <textarea
+                        name="symptoms"
+                        placeholder="Enter patient's symptoms"
+                    ></textarea>
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="calculate-btn">
+                Calculate Priority Score
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Patient Priority Results -->
+
+    <div class="table-box">
+
+        <h2>Priority Assessment Results</h2>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Patient</th>
+                        <th>Age</th>
+                        <th>Heart Rate</th>
+                        <th>SpO₂</th>
+                        <th>Temperature</th>
+                        <th>BP</th>
+                        <th>Score</th>
+                        <th>Priority</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if patients|length == 0 %}
+
+                    <tr>
+                        <td colspan="8" class="empty-message">
+                            No emergency assessments available.
+                        </td>
+                    </tr>
+
+                    {% else %}
+
+                        {% for patient in patients %}
+
+                        <tr>
+
+                            <td>
+                                <strong>{{ patient.patient_name }}</strong>
+                            </td>
+
+                            <td>{{ patient.age }}</td>
+
+                            <td>{{ patient.heart_rate }} bpm</td>
+
+                            <td>{{ patient.oxygen_level }}%</td>
+
+                            <td>{{ patient.temperature }} °F</td>
+
+                            <td>{{ patient.systolic_bp }} mmHg</td>
+
+                            <td class="score">
+                                {{ patient.priority_score }}
+                            </td>
+
+                            <td>
+
+                                {% if patient.priority_level == 'Critical' %}
+
+                                    <span class="critical">
+                                        🔴 Critical
+                                    </span>
+
+                                {% elif patient.priority_level == 'High' %}
+
+                                    <span class="high">
+                                        🟠 High
+                                    </span>
+
+                                {% elif patient.priority_level == 'Medium' %}
+
+                                    <span class="medium">
+                                        🟡 Medium
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="low">
+                                        🟢 Low
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <a href="{{ url_for('services') }}" class="back-btn">
+        ← Back to Services
+    </a>
+
+</div>
+
+</body>
+</html>

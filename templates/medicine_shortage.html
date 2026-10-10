@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicine Shortage Prediction</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h2 {
+            margin: 5px 0;
+            font-size: 30px;
+        }
+
+        .card p {
+            margin: 0;
+            color: #777;
+        }
+
+        .critical h2 {
+            color: #dc3545;
+        }
+
+        .low h2 {
+            color: #fd7e14;
+        }
+
+        .available h2 {
+            color: #198754;
+        }
+
+        .alert-box {
+            background: #f8d7da;
+            color: #842029;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #dc3545;
+        }
+
+        .table-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            padding: 14px;
+        }
+
+        td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .critical-badge {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .low-badge {
+            background: #fff3cd;
+            color: #664d03;
+        }
+
+        .available-badge {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .days-critical {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .days-low {
+            color: #fd7e14;
+            font-weight: bold;
+        }
+
+        .days-safe {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .stock-input {
+            width: 80px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .update-btn {
+            padding: 7px 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .update-btn:hover {
+            background: #0056b3;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 11px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        .empty-message {
+            padding: 30px;
+            color: #777;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            th, td {
+                padding: 10px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💊 Medicine Shortage Prediction</h1>
+
+    <p class="subtitle">
+        Monitor medicine stock and predict possible shortages
+    </p>
+
+
+    <!-- Dashboard Cards -->
+
+    <div class="cards">
+
+        <div class="card critical">
+            <p>Critical Medicines</p>
+
+            <h2>
+                {{ medicines | selectattr('status', 'equalto', 'Critical') | list | length }}
+            </h2>
+        </div>
+
+
+        <div class="card low">
+            <p>Low Stock Medicines</p>
+
+            <h2>
+                {{ medicines | selectattr('status', 'equalto', 'Low Stock') | list | length }}
+            </h2>
+        </div>
+
+
+        <div class="card available">
+            <p>Available Medicines</p>
+
+            <h2>
+                {{ medicines | selectattr('status', 'equalto', 'Available') | list | length }}
+            </h2>
+        </div>
+
+    </div>
+
+
+    <!-- Shortage Alert -->
+
+    {% set urgent_medicines = medicines
+        | selectattr('status', 'equalto', 'Critical')
+        | list
+    %}
+
+    {% if urgent_medicines %}
+
+    <div class="alert-box">
+
+        <strong>🚨 Shortage Alert</strong>
+
+        <br>
+
+        {{ urgent_medicines | length }}
+        medicine(s) may run out within 3 days.
+        Please check the stock and update it if required.
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- Medicine Table -->
+
+    <div class="table-box">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Medicine</th>
+                    <th>Current Stock</th>
+                    <th>Daily Usage</th>
+                    <th>Reorder Level</th>
+                    <th>Days Left</th>
+                    <th>Status</th>
+                    <th>Update Stock</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% if medicines|length == 0 %}
+
+                <tr>
+                    <td colspan="7" class="empty-message">
+                        💊 No medicines found in inventory.
+                    </td>
+                </tr>
+
+                {% else %}
+
+                    {% for medicine in medicines %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ medicine.medicine_name }}</strong>
+                        </td>
+
+                        <td>
+                            {{ medicine.current_stock }}
+                        </td>
+
+                        <td>
+                            {{ medicine.daily_usage }}
+                        </td>
+
+                        <td>
+                            {{ medicine.reorder_level }}
+                        </td>
+
+
+                        <!-- Days Left -->
+
+                        <td>
+
+                            {% if medicine.days_left <= 3 %}
+
+                                <span class="days-critical">
+                                    {{ medicine.days_left }} days
+                                </span>
+
+                            {% elif medicine.days_left <= 7 %}
+
+                                <span class="days-low">
+                                    {{ medicine.days_left }} days
+                                </span>
+
+                            {% else %}
+
+                                <span class="days-safe">
+                                    {{ medicine.days_left }} days
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- Status -->
+
+                        <td>
+
+                            {% if medicine.status == 'Critical' %}
+
+                                <span class="badge critical-badge">
+                                    🔴 Critical
+                                </span>
+
+                            {% elif medicine.status == 'Low Stock' %}
+
+                                <span class="badge low-badge">
+                                    🟠 Low Stock
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge available-badge">
+                                    🟢 Available
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- Update Stock -->
+
+                        <td>
+
+                            <form
+                                action="{{ url_for('update_medicine_stock', medicine_id=medicine.id) }}"
+                                method="POST"
+                            >
+
+                                <input
+                                    type="number"
+                                    name="new_stock"
+                                    min="0"
+                                    value="{{ medicine.current_stock }}"
+                                    class="stock-input"
+                                    required
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="update-btn"
+                                >
+                                    Update
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- Back Button -->
+
+    <a href="{{ url_for('services') }}" class="back-btn">
+        ← Back to Services
+    </a>
+
+</div>
+
+</body>
+</html>

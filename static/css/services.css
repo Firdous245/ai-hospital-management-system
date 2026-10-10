@@ -1,0 +1,516 @@
+/* =====================================================
+   SERVICES PAGE
+===================================================== */
+
+
+/* ================= HEADER ================= */
+
+.services-header {
+    background:
+        linear-gradient(
+            135deg,
+            #effcfb,
+            #ffffff,
+            #eef9ff
+        );
+}
+
+
+/* ================= SERVICES SECTION ================= */
+
+.services-section {
+    background: var(--white);
+}
+
+.services-section .section-text,
+.ai-services-section .section-text {
+    max-width: 700px;
+}
+
+
+/* ================= SERVICE CARD ================= */
+
+.service-card {
+    position: relative;
+
+    height: 100%;
+
+    padding: 30px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+.service-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: var(--secondary);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform 0.35s ease;
+}
+
+
+.service-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(20, 184, 166, 0.25);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* ================= SERVICE ICON ================= */
+
+.service-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 16px;
+
+    background: rgba(20, 184, 166, 0.11);
+
+    color: var(--secondary);
+
+    font-size: 23px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.service-card:hover .service-icon {
+    transform: translateY(-3px);
+
+    background: rgba(20, 184, 166, 0.16);
+}
+
+
+/* ================= SERVICE NUMBER ================= */
+
+.service-number {
+    position: absolute;
+
+    top: 25px;
+    right: 25px;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* ================= SERVICE TITLE ================= */
+
+.service-card h4 {
+    color: var(--primary-dark);
+
+    font-size: 20px;
+    font-weight: 750;
+
+    margin-bottom: 12px;
+}
+
+
+/* ================= SERVICE DESCRIPTION ================= */
+
+.service-card p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+    margin-bottom: 22px;
+}
+
+
+/* ================= SERVICE LINK ================= */
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--secondary);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        gap 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.service-link:hover {
+    color: var(--primary-dark);
+
+    gap: 12px;
+}
+
+
+.service-link i {
+    font-size: 12px;
+}
+
+
+/* ================= AI SERVICES SECTION ================= */
+
+.ai-services-section {
+    position: relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f5fcfb 0%,
+            #ffffff 100%
+        );
+
+    border-top: 1px solid var(--border);
+}
+
+
+.ai-section-tag {
+    background: rgba(20, 184, 166, 0.10);
+
+    border-color: rgba(20, 184, 166, 0.20);
+}
+
+
+/* ================= AI CARD ================= */
+
+.ai-service-card {
+    position: relative;
+
+    height: 100%;
+
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(20, 184, 166, 0.20);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(15, 76, 129, 0.06);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+.ai-service-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--secondary),
+            #38bdf8
+        );
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: transform 0.35s ease;
+}
+
+
+.ai-service-card:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(20, 184, 166, 0.40);
+
+    box-shadow:
+        0 18px 40px rgba(15, 76, 129, 0.10);
+}
+
+
+.ai-service-card:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* ================= AI ICON ================= */
+
+.ai-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 184, 166, 0.14),
+            rgba(56, 189, 248, 0.12)
+        );
+
+    color: var(--secondary);
+
+    font-size: 24px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.ai-service-card:hover .ai-icon {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(20, 184, 166, 0.12);
+}
+
+
+/* ================= AI BADGE ================= */
+
+.ai-badge {
+    display: inline-flex;
+
+    padding: 5px 10px;
+
+    margin-bottom: 10px;
+
+    border-radius: 50px;
+
+    background: rgba(20, 184, 166, 0.09);
+
+    color: var(--secondary);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* ================= AI TITLE ================= */
+
+.ai-service-card h4 {
+    color: var(--primary-dark);
+
+    font-size: 20px;
+    font-weight: 750;
+
+    margin-bottom: 12px;
+}
+
+
+/* ================= AI DESCRIPTION ================= */
+
+.ai-service-card p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.75;
+
+    margin-bottom: 22px;
+}
+
+
+/* ================= AI LINK ================= */
+
+.ai-service-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--secondary);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        gap 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.ai-service-link:hover {
+    color: var(--primary-dark);
+
+    gap: 12px;
+}
+
+
+.ai-service-link i {
+    font-size: 12px;
+}
+
+
+/* ================= AI HIGHLIGHT ================= */
+
+.ai-service-highlight {
+    background:
+        linear-gradient(
+            145deg,
+            #ecfdf9,
+            #f0f9ff
+        );
+
+    border-color:
+        rgba(20, 184, 166, 0.30);
+}
+
+
+.ai-service-highlight .ai-icon {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 184, 166, 0.20),
+            rgba(56, 189, 248, 0.18)
+        );
+}
+
+
+/* ================= CTA ================= */
+
+.services-cta {
+    background: var(--background);
+}
+
+
+.services-cta .cta-box {
+    padding: 55px 30px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf9,
+            #f0f9ff
+        );
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.services-cta .cta-box h2 {
+    color: var(--primary-dark);
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+
+.services-cta .cta-box p {
+    max-width: 650px;
+
+    margin: 12px auto 0;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 767px) {
+
+    .service-card,
+    .ai-service-card {
+        padding: 25px;
+    }
+
+    .services-cta .cta-box {
+        padding: 40px 20px;
+    }
+
+    .services-cta .cta-box h2 {
+        font-size: 25px;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    .service-card,
+    .ai-service-card {
+        border-radius: 18px;
+    }
+
+    .service-icon,
+    .ai-icon {
+        width: 52px;
+        height: 52px;
+
+        font-size: 21px;
+    }
+
+    .service-number {
+        top: 20px;
+        right: 20px;
+    }
+}

@@ -1,0 +1,229 @@
+/* =====================================================
+   AI INNOVATIONS PAGE
+===================================================== */
+
+
+/* ================= HEADER ================= */
+
+.innovation-header {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(20, 184, 166, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #effcfb,
+            #ffffff,
+            #eef9ff
+        );
+}
+
+
+/* ================= INNOVATIONS ================= */
+
+.innovations-section {
+    background: var(--white);
+}
+
+
+/* ================= INNOVATION CARD ================= */
+
+.innovation-card {
+    position: relative;
+
+    height: 100%;
+
+    padding: 32px 28px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    transition: 0.35s ease;
+}
+
+.innovation-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(20, 184, 166, 0.4);
+}
+
+
+/* ================= NUMBER ================= */
+
+.innovation-number {
+    position: absolute;
+
+    top: 20px;
+    right: 24px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #cbd5e1;
+}
+
+
+/* ================= ICON ================= */
+
+.innovation-icon {
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 20px;
+
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--secondary);
+
+    font-size: 28px;
+
+    transition: 0.35s ease;
+}
+
+.innovation-card:hover .innovation-icon {
+    background: var(--secondary);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+
+/* ================= CONTENT ================= */
+
+.innovation-card h4 {
+    color: var(--primary-dark);
+
+    font-size: 21px;
+    font-weight: 700;
+
+    margin-bottom: 12px;
+}
+
+.innovation-card p {
+    color: var(--muted);
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+
+/* ================= STATUS ================= */
+
+.innovation-status {
+    display: inline-block;
+
+    padding: 6px 13px;
+
+    border-radius: 50px;
+
+    background: rgba(20, 184, 166, 0.1);
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ================= HIGHLIGHT ================= */
+
+.innovation-card-highlight {
+    background:
+        linear-gradient(
+            145deg,
+            #f0fdfa,
+            #ffffff
+        );
+
+    border-color: rgba(20, 184, 166, 0.35);
+}
+
+
+/* ================= AI WORKFLOW ================= */
+
+.ai-workflow-section {
+    background: var(--background);
+}
+
+
+.workflow-card {
+    height: 100%;
+
+    padding: 32px 25px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow-sm);
+
+    transition: 0.35s ease;
+}
+
+.workflow-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+
+.workflow-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--secondary);
+
+    font-size: 26px;
+}
+
+
+.workflow-card h4 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+
+.workflow-card p {
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 576px) {
+
+    .innovation-card {
+        padding: 28px 22px;
+    }
+
+    .innovation-card h4 {
+        font-size: 19px;
+    }
+
+}

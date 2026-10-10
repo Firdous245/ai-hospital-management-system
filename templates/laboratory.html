@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Laboratory Management | AI Hospital</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #777;
+        }
+
+        .form-box,
+        .records-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea {
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 85px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-btn:hover {
+            background: #0056b3;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            padding: 13px;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .empty {
+            padding: 30px;
+            color: #777;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 11px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            th,
+            td {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>🧪 Laboratory Management</h1>
+
+        <p>
+            Manage laboratory tests and diagnostic reports
+        </p>
+
+    </div>
+
+
+    <!-- ADD LAB TEST -->
+
+    <div class="form-box">
+
+        <h2>Add Laboratory Test</h2>
+
+        <form
+            action="{{ url_for('laboratory') }}"
+            method="POST"
+        >
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Patient Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="patient_name"
+                        placeholder="Enter patient name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Test Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="test_name"
+                        placeholder="Example: Blood Test"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Doctor Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="doctor_name"
+                        placeholder="Enter doctor name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Test Date
+                    </label>
+
+                    <input
+                        type="date"
+                        name="test_date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Test Result
+                    </label>
+
+                    <input
+                        type="text"
+                        name="result"
+                        placeholder="Enter test result"
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Remarks
+                    </label>
+
+                    <textarea
+                        name="remarks"
+                        placeholder="Enter additional remarks"
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-btn"
+            >
+
+                💾 Save Laboratory Record
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- LAB RECORDS -->
+
+    <div class="records-box">
+
+        <h2>
+            Laboratory Records
+        </h2>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patient</th>
+                        <th>Test</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Result</th>
+                        <th>Remarks</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% if lab_records|length == 0 %}
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="empty"
+                        >
+
+                            🧪 No laboratory records available.
+
+                        </td>
+
+                    </tr>
+
+
+                    {% else %}
+
+
+                    {% for record in lab_records %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                {{ record.patient_name }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ record.test_name }}
+                        </td>
+
+                        <td>
+                            {{ record.doctor_name or '-' }}
+                        </td>
+
+                        <td>
+                            {{ record.test_date or '-' }}
+                        </td>
+
+                        <td>
+                            {{ record.result or '-' }}
+                        </td>
+
+                        <td>
+                            {{ record.remarks or '-' }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                    {% endif %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK TO SERVICES -->
+
+    <a
+        href="{{ url_for('services') }}"
+        class="back-btn"
+    >
+
+        ← Back to Services
+
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>

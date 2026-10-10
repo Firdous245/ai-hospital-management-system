@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Crowd Prediction | AI Hospital</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f8f9;
+            color: #263238;
+        }
+
+        .navbar {
+            background: #078b87;
+            padding: 18px 30px;
+            color: white;
+        }
+
+        .nav-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            color: white;
+            text-decoration: none;
+            padding: 9px 16px;
+            border: 1px solid rgba(255,255,255,0.7);
+            border-radius: 8px;
+        }
+
+        .container {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            color: #078b87;
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #68757a;
+        }
+
+        .message {
+            padding: 13px 18px;
+            border-radius: 9px;
+            margin-bottom: 20px;
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            color: #078b87;
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd7d8;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: #078b87;
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #078b87;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .predict-btn:hover {
+            background: #056d6a;
+        }
+
+        .result {
+            text-align: center;
+        }
+
+        .crowd-level {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #078b87;
+        }
+
+        .result-icon {
+            font-size: 55px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #f1f8f7;
+            padding: 14px;
+            border-radius: 9px;
+        }
+
+        .info-label {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-weight: bold;
+        }
+
+        .history-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+
+        .history-item {
+            padding: 16px;
+            border: 1px solid #e3eeee;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .history-title {
+            color: #078b87;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .history-details {
+            color: #666;
+            margin-top: 7px;
+            line-height: 1.6;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #e8f7e8;
+            color: #28752c;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            color: #777;
+            padding: 25px;
+        }
+
+        .note {
+            margin-top: 20px;
+            background: #f5f8f8;
+            padding: 13px;
+            border-radius: 9px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 800px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 29px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="nav-content">
+
+        <div class="logo">
+            🏥 AI Hospital
+        </div>
+
+        <a href="{{ url_for('home') }}"
+           class="home-btn">
+
+            ← Home
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+    <div class="heading">
+
+        <h1>
+            🏥 Hospital Crowd Prediction
+        </h1>
+
+        <p>
+            Predict the expected hospital crowd and waiting time
+            before visiting.
+        </p>
+
+    </div>
+
+
+    <!-- ================= FLASH ================= -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <div class="grid">
+
+
+        <!-- ================= FORM ================= -->
+
+        <div class="card">
+
+            <h2>
+                Check Crowd Level
+            </h2>
+
+            <form
+                action="{{ url_for('crowd_prediction') }}"
+                method="POST"
+            >
+
+
+                <div class="form-group">
+
+                    <label for="department">
+                        Department
+                    </label>
+
+                    <select
+                        name="department"
+                        id="department"
+                        required
+                    >
+
+                        <option value="">
+                            -- Select Department --
+                        </option>
+
+                        <option value="General Medicine">
+                            General Medicine
+                        </option>
+
+                        <option value="Cardiology">
+                            Cardiology
+                        </option>
+
+                        <option value="Orthopedics">
+                            Orthopedics
+                        </option>
+
+                        <option value="Pediatrics">
+                            Pediatrics
+                        </option>
+
+                        <option value="Dermatology">
+                            Dermatology
+                        </option>
+
+                        <option value="Neurology">
+                            Neurology
+                        </option>
+
+                        <option value="Emergency">
+                            Emergency
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="visit_date">
+                        Visit Date
+                    </label>
+
+                    <input
+                        type="date"
+                        name="visit_date"
+                        id="visit_date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="visit_time">
+                        Expected Visit Time
+                    </label>
+
+                    <input
+                        type="time"
+                        name="visit_time"
+                        id="visit_time"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="predict-btn"
+                >
+
+                    🔍 Predict Crowd
+
+                </button>
+
+            </form>
+
+
+            <div class="note">
+
+                💡 <strong>How it works:</strong>
+                The system estimates crowd levels based on the
+                selected visiting time and provides an expected
+                waiting-time range.
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RESULT ================= -->
+
+        <div class="card result">
+
+            {% if prediction %}
+
+                {% if prediction.crowd == "High" %}
+
+                    <div class="result-icon">
+                        🔴
+                    </div>
+
+                {% elif prediction.crowd == "Medium" %}
+
+                    <div class="result-icon">
+                        🟡
+                    </div>
+
+                {% else %}
+
+                    <div class="result-icon">
+                        🟢
+                    </div>
+
+                {% endif %}
+
+
+                <h2>
+                    Crowd Prediction
+                </h2>
+
+
+                <div class="crowd-level">
+
+                    {{ prediction.crowd }}
+
+                </div>
+
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Department
+                        </span>
+
+                        <span class="info-value">
+                            {{ prediction.department }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Visit Date
+                        </span>
+
+                        <span class="info-value">
+                            {{ prediction.date }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Visit Time
+                        </span>
+
+                        <span class="info-value">
+                            {{ prediction.time }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span class="info-label">
+                            Estimated Waiting
+                        </span>
+
+                        <span class="info-value">
+                            {{ prediction.waiting }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            {% else %}
+
+                <div class="result-icon">
+                    📊
+                </div>
+
+                <h2>
+                    Your Prediction
+                </h2>
+
+                <p>
+                    Select your department, date and expected
+                    visit time to see the predicted crowd level.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= HISTORY ================= -->
+
+    <div class="history-card">
+
+        <h2>
+            📋 Prediction History
+        </h2>
+
+
+        {% if history %}
+
+
+            {% for item in history %}
+
+                <div class="history-item">
+
+                    <div class="history-title">
+
+                        {{ item.department }}
+
+                    </div>
+
+
+                    <div class="history-details">
+
+                        Date:
+                        {{ item.visit_date }}
+
+                        <br>
+
+                        Time:
+                        {{ item.visit_time }}
+
+                        <br>
+
+                        Estimated Waiting:
+                        {{ item.estimated_wait }}
+
+                    </div>
+
+
+                    <span class="badge">
+
+                        {{ item.crowd_level }} Crowd
+
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <div class="empty">
+
+                No prediction history available yet.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

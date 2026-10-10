@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pharmacy Management | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+    .pharmacy-header {
+        padding: 70px 0 55px;
+    }
+
+    .pharmacy-section {
+        padding: 60px 0;
+    }
+
+    .pharmacy-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        border: 1px solid #eef2f7;
+    }
+
+    .pharmacy-card h3 {
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #dfe5ec;
+        border-radius: 9px;
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0,123,255,0.08);
+    }
+
+    .form-group textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    .save-btn {
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        background: #56d6a;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .save-btn:hover {
+        background: #0056b3;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .pharmacy-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .pharmacy-table th {
+        background: #007bff;
+        color: white;
+        padding: 14px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .pharmacy-table td {
+        padding: 14px;
+        text-align: center;
+        border-bottom: 1px solid #edf0f4;
+    }
+
+    .pharmacy-table tbody tr:hover {
+        background: #f8fbff;
+    }
+
+    .medicine-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background: #e7f1ff;
+        color: #0069d9;
+        font-weight: 600;
+        font-size: 13px;
+    }
+
+    .empty-message {
+        padding: 35px !important;
+        color: #777;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 11px 20px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .back-btn:hover {
+        background: #0056b3;
+        color: white;
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ================= HEADER ================= -->
+
+<section class="page-header pharmacy-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+
+            <i class="fa-solid fa-pills"></i>
+
+            PHARMACY SERVICES
+
+        </span>
+
+        <h1 class="page-title mt-3">
+
+            Pharmacy Management
+
+        </h1>
+
+        <p class="page-header-text">
+
+            Manage prescriptions and medicine information
+            through one centralized healthcare platform.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PHARMACY ================= -->
+
+<section class="pharmacy-section">
+
+    <div class="container">
+
+
+        <!-- PRESCRIPTION FORM -->
+
+        <div class="pharmacy-card mb-4">
+
+            <div class="text-center mb-4">
+
+                <span class="section-tag">
+                    PRESCRIPTION
+                </span>
+
+                <h3 class="mt-2">
+                    Add Prescription
+                </h3>
+
+            </div>
+
+
+            <form
+                action="{{ url_for('pharmacy') }}"
+                method="POST"
+            >
+
+                <div class="row g-4">
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Patient Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="patient_name"
+                                placeholder="Enter patient name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Doctor Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="doctor_name"
+                                placeholder="Enter doctor name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Medicine Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="medicine_name"
+                                placeholder="Enter medicine name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Dosage
+                            </label>
+
+                            <input
+                                type="text"
+                                name="dosage"
+                                placeholder="Example: 1 tablet twice daily"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Duration
+                            </label>
+
+                            <input
+                                type="text"
+                                name="duration"
+                                placeholder="Example: 5 days"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Prescription Date
+                            </label>
+
+                            <input
+                                type="date"
+                                name="prescription_date"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-12">
+
+                        <div class="form-group">
+
+                            <label>
+                                Instructions
+                            </label>
+
+                            <textarea
+                                name="instructions"
+                                placeholder="Enter medicine instructions"
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-center">
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+
+                        <i class="fa-solid fa-prescription-bottle-medical me-2"></i>
+
+                        Save Prescription
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- PRESCRIPTION HISTORY -->
+
+        <div class="pharmacy-card">
+
+            <div class="text-center mb-4">
+
+                <span class="section-tag">
+                    PRESCRIPTION HISTORY
+                </span>
+
+                <h3 class="mt-2">
+                    My Prescriptions
+                </h3>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="pharmacy-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Medicine</th>
+                            <th>Dosage</th>
+                            <th>Duration</th>
+                            <th>Date</th>
+                            <th>Instructions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% if prescriptions|length == 0 %}
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="empty-message"
+                            >
+
+                                💊 No prescriptions available.
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        {% for prescription in prescriptions %}
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    {{ prescription.patient_name }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ prescription.doctor_name }}
+                            </td>
+
+                            <td>
+
+                                <span class="medicine-badge">
+
+                                    {{ prescription.medicine_name }}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+                                {{ prescription.dosage or '-' }}
+                            </td>
+
+                            <td>
+                                {{ prescription.duration or '-' }}
+                            </td>
+
+                            <td>
+                                {{ prescription.prescription_date }}
+                            </td>
+
+                            <td>
+                                {{ prescription.instructions or '-' }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="text-center">
+
+            <a
+                href="{{ url_for('services') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left me-2"></i>
+
+                Back to Services
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

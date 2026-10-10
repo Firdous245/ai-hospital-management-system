@@ -1,0 +1,927 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Services | AI Hospital
+{% endblock %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/services.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     SERVICES HEADER
+===================================================== -->
+
+<section class="page-header services-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+
+            <i class="fa-solid fa-stethoscope"></i>
+
+            OUR SERVICES
+
+        </span>
+
+
+        <h1 class="page-title mt-3">
+
+            Complete Healthcare Services
+
+        </h1>
+
+
+        <p class="page-header-text">
+
+            Manage essential hospital services through one
+            smart and centralized healthcare platform.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOSPITAL SERVICES
+===================================================== -->
+
+<section class="services-section py-5">
+
+    <div class="container">
+
+
+        <!-- Section Heading -->
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+
+                HEALTHCARE SOLUTIONS
+
+            </span>
+
+
+            <h2 class="section-title mt-2">
+
+                Everything Your Hospital Needs
+
+            </h2>
+
+
+            <p class="section-text mx-auto">
+
+                Our platform brings important hospital services
+                together to make healthcare management easier,
+                faster and more efficient.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HOSPITAL SERVICE CARDS
+        ================================================== -->
+
+        <div class="row g-4">
+
+
+            <!-- PATIENT MANAGEMENT -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-hospital-user"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        01
+                    </span>
+
+                    <h4>
+                        Patient Management
+                    </h4>
+
+                    <p>
+
+                        Manage patient registration, profiles,
+                        medical information and hospital records
+                        in an organized manner.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('patient_management') }}"
+                        class="service-link">
+
+                        Learn More
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DOCTOR MANAGEMENT -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-user-doctor"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        02
+                    </span>
+
+                    <h4>
+                        Doctor Management
+                    </h4>
+
+                    <p>
+
+                        Maintain doctor profiles, departments,
+                        availability and professional information
+                        through one centralized platform.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('doctors') }}"
+                        class="service-link">
+
+                        View Doctors
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- APPOINTMENT MANAGEMENT -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        03
+                    </span>
+
+                    <h4>
+                        Appointment Management
+                    </h4>
+
+                    <p>
+
+                        Schedule and manage appointments efficiently
+                        while reducing unnecessary waiting time.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('appointment') }}"
+                        class="service-link">
+
+                        Book Appointment
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEDICAL RECORDS -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-file-medical"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        04
+                    </span>
+
+                    <h4>
+                        Digital Medical Records
+                    </h4>
+
+                    <p>
+
+                        Store and manage patient medical records
+                        digitally for easier access and better
+                        organization.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('medical_records') }}"
+                        class="service-link">
+
+                        Access Records
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LABORATORY -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-flask"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        05
+                    </span>
+
+                    <h4>
+                        Laboratory Management
+                    </h4>
+
+                    <p>
+
+                        Organize laboratory requests, test
+                        information and diagnostic reports
+                        in one place.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('laboratory') }}"
+                        class="service-link">
+
+                        Learn More
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PHARMACY -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-pills"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        06
+                    </span>
+
+                    <h4>
+                        Pharmacy Management
+                    </h4>
+
+                    <p>
+
+                        Manage medicines, prescriptions and
+                        pharmacy information efficiently
+                        through a centralized system.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('pharmacy') }}"
+                        class="service-link">
+
+                        Learn More
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BILLING -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        07
+                    </span>
+
+                    <h4>
+                        Billing Management
+                    </h4>
+
+                    <p>
+
+                        Organize patient billing and hospital
+                        payment information through a centralized
+                        management system.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('billing') }}"
+                        class="service-link">
+
+                        Manage Billing
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMERGENCY CARE -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-truck-medical"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        08
+                    </span>
+
+                    <h4>
+                        Emergency Care
+                    </h4>
+
+                    <p>
+
+                        Support emergency healthcare workflows
+                        with faster access to important patient
+                        information.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('emergency_care') }}"
+                        class="service-link">
+
+                        Learn More
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HEALTHCARE MANAGEMENT -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+
+                        <i class="fa-solid fa-hospital"></i>
+
+                    </div>
+
+                    <span class="service-number">
+                        09
+                    </span>
+
+                    <h4>
+                        Hospital Administration
+                    </h4>
+
+                    <p>
+
+                        Centralize hospital operations, departments,
+                        staff information and essential administrative
+                        workflows.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('login') }}"
+                        class="service-link">
+
+                        Manage Hospital
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AI POWERED HEALTHCARE
+===================================================== -->
+
+<section class="ai-services-section py-5">
+
+    <div class="container">
+
+
+        <!-- AI Heading -->
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag ai-section-tag">
+
+                <i class="fa-solid fa-brain"></i>
+
+                AI-POWERED HEALTHCARE
+
+            </span>
+
+
+            <h2 class="section-title mt-3">
+
+                Intelligent Features for Modern Healthcare
+
+            </h2>
+
+
+            <p class="section-text mx-auto">
+
+                Our AI-powered features are designed to support
+                patients, doctors and hospital administrators
+                with smarter and faster healthcare management.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             AI SERVICE CARDS
+        ================================================== -->
+
+        <div class="row g-4">
+
+
+            <!-- AI SYMPTOM CHECKER -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ai-service-card">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-stethoscope"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        AI Symptom Checker
+                    </h4>
+
+
+                    <p>
+
+                        Analyze user-provided symptoms and provide
+                        preliminary health guidance while encouraging
+                        professional medical consultation.
+
+                    </p>
+                    <a href="{{ url_for('ai_symptom_checker') }}" class="ai-service-link"
+>
+                     Explore Feature
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+
+                
+                </div>
+
+            </div>
+
+
+
+            <!-- AI HEALTHCARE ASSISTANT -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ai-service-card">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-robot"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        AI Healthcare Assistant
+                    </h4>
+
+
+                    <p>
+
+                        Provide patients with quick access to
+                        general healthcare information, hospital
+                        services and common queries.
+
+                    </p>
+
+
+                    <a href="{{ url_for('ai_healthcare_assistant') }}"
+   class="ai-service-link"
+>
+
+    Explore Feature
+    <i class="fa-solid fa-arrow-right"></i>
+
+</a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SMART QUEUE -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ai-service-card">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-users-viewfinder"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        Smart Queue Management
+                    </h4>
+
+
+                    <p>
+
+                        Monitor patient queues and help optimize
+                        waiting times by organizing patient flow
+                        more efficiently.
+
+                    </p>
+
+
+                   <a
+    href="{{ url_for('smart_queue') }}"
+    class="ai-service-link">
+    Explore Feature
+    <i class="fa-solid fa-arrow-right"></i>
+</a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEDICINE REMINDER -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ai-service-card">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-pills"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        Medicine Reminder
+                    </h4>
+
+
+                    <p>
+
+                        Help patients remember scheduled medicines
+                        and maintain consistent medication routines.
+
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('medicine_reminder') }}"
+                        class="ai-service-link">
+
+                        Explore Feature
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CROWD PREDICTION -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ai-service-card">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        Hospital Crowd Prediction
+                    </h4>
+
+
+                    <p>
+
+                        Analyze hospital activity patterns to help
+                        predict busy periods and support better
+                        resource planning.
+
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('crowd_prediction') }}"
+                        class="ai-service-link">
+
+                        Explore Feature
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MEDICINE SHORTAGE -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="ai-service-card">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-boxes-stacked"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        Medicine Shortage Prediction
+                    </h4>
+
+
+                    <p>
+
+                        Use medicine usage patterns to help identify
+                        potential shortages and support inventory
+                        planning.
+
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('medicine_shortage') }}"
+                        class="ai-service-link">
+
+                        Explore Feature
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMERGENCY PRIORITY -->
+
+            <div class="col-md-6 col-lg-4 mx-lg-auto">
+
+                <div class="ai-service-card ai-service-highlight">
+
+                    <div class="ai-icon">
+
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    </div>
+
+
+                    <span class="ai-badge">
+                        AI FEATURE
+                    </span>
+
+
+                    <h4>
+                        Emergency Priority Score
+                    </h4>
+
+
+                    <p>
+
+                        Support emergency departments by helping
+                        prioritize patients according to relevant
+                        clinical information and urgency indicators.
+
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('emergency_priority') }}"
+                        class="ai-service-link">
+
+                        Explore Feature
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="services-cta py-5">
+
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+            <span class="section-tag">
+
+                SMART HEALTHCARE
+
+            </span>
+
+
+            <h2 class="mt-3">
+
+                Better Management.
+                Better Healthcare.
+
+            </h2>
+
+
+            <p>
+
+                Discover how AI Hospital can simplify
+                hospital operations and improve healthcare
+                management.
+
+            </p>
+
+
+            <a
+                href="{{ url_for('contact') }}"
+                class="btn custom-btn btn-lg mt-3">
+
+                Contact Us
+
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

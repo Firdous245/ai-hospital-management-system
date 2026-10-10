@@ -1,0 +1,495 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Emergency Care | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+    .emergency-header {
+        padding: 70px 0 55px;
+    }
+
+    .emergency-section {
+        padding: 60px 0;
+    }
+
+    .emergency-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        border: 1px solid #eef2f7;
+    }
+
+    .emergency-card h3 {
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .emergency-alert {
+        background: #fff3f3;
+        border-left: 5px solid #dc3545;
+        padding: 16px 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        color: #842029;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #dfe5ec;
+        border-radius: 9px;
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0,123,255,0.08);
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .emergency-btn {
+        border: none;
+        padding: 12px 28px;
+        border-radius: 8px;
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .emergency-btn:hover {
+        background: #bb2d3b;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .emergency-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .emergency-table th {
+        background: #007bff;
+        color: white;
+        padding: 14px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .emergency-table td {
+        padding: 14px;
+        text-align: center;
+        border-bottom: 1px solid #edf0f4;
+    }
+
+    .emergency-table tbody tr:hover {
+        background: #f8fbff;
+    }
+
+    .status-pending {
+        background: #fff3cd;
+        color: #664d03;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .empty-message {
+        padding: 35px !important;
+        color: #777;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 11px 20px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .back-btn:hover {
+        background: #0056b3;
+        color: white;
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ================= HEADER ================= -->
+
+<section class="page-header emergency-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+
+            <i class="fa-solid fa-truck-medical"></i>
+
+            EMERGENCY SERVICES
+
+        </span>
+
+        <h1 class="page-title mt-3">
+            Emergency Care
+        </h1>
+
+        <p class="page-header-text">
+
+            Submit emergency requests and provide important
+            patient information for faster emergency assistance.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= EMERGENCY SECTION ================= -->
+
+<section class="emergency-section">
+
+    <div class="container">
+
+
+        <!-- ALERT -->
+
+        <div class="emergency-alert">
+
+            <strong>
+                🚨 Emergency Notice
+            </strong>
+
+            <br>
+
+            For life-threatening emergencies, contact your
+            local emergency medical service immediately.
+
+        </div>
+
+
+        <!-- REQUEST FORM -->
+
+        <div class="emergency-card mb-4">
+
+            <div class="text-center mb-4">
+
+                <span class="section-tag">
+                    EMERGENCY REQUEST
+                </span>
+
+                <h3 class="mt-2">
+                    Request Emergency Assistance
+                </h3>
+
+            </div>
+
+
+            <form
+                action="{{ url_for('emergency_care') }}"
+                method="POST"
+            >
+
+                <div class="row g-4">
+
+
+                    <!-- PATIENT -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Patient Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="patient_name"
+                                placeholder="Enter patient name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMERGENCY TYPE -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Emergency Type
+                            </label>
+
+                            <select
+                                name="emergency_type"
+                                required
+                            >
+
+                                <option value="">
+                                    Select emergency type
+                                </option>
+
+                                <option value="Accident">
+                                    Accident
+                                </option>
+
+                                <option value="Breathing Problem">
+                                    Breathing Problem
+                                </option>
+
+                                <option value="Chest Pain">
+                                    Chest Pain
+                                </option>
+
+                                <option value="Severe Injury">
+                                    Severe Injury
+                                </option>
+
+                                <option value="Unconscious">
+                                    Unconscious
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTACT -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Contact Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                name="contact_number"
+                                placeholder="Enter contact number"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SYMPTOMS -->
+
+                    <div class="col-12">
+
+                        <div class="form-group">
+
+                            <label>
+                                Symptoms / Emergency Details
+                            </label>
+
+                            <textarea
+                                name="symptoms"
+                                placeholder="Describe the emergency situation"
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-center">
+
+                    <button
+                        type="submit"
+                        class="emergency-btn"
+                    >
+
+                        <i class="fa-solid fa-truck-medical me-2"></i>
+
+                        Submit Emergency Request
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- REQUEST HISTORY -->
+
+        <div class="emergency-card">
+
+            <div class="text-center mb-4">
+
+                <span class="section-tag">
+                    REQUEST HISTORY
+                </span>
+
+                <h3 class="mt-2">
+                    My Emergency Requests
+                </h3>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="emergency-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Patient</th>
+                            <th>Emergency Type</th>
+                            <th>Symptoms</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                            <th>Date</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% if emergency_requests|length == 0 %}
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="empty-message"
+                            >
+
+                                🚑 No emergency requests available.
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        {% for request in emergency_requests %}
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    {{ request.patient_name }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                {{ request.emergency_type }}
+                            </td>
+
+                            <td>
+                                {{ request.symptoms or '-' }}
+                            </td>
+
+                            <td>
+                                {{ request.contact_number }}
+                            </td>
+
+                            <td>
+
+                                <span class="status-pending">
+
+                                    {{ request.emergency_status }}
+
+                                </span>
+
+                            </td>
+
+                            <td>
+                                {{ request.created_at }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <div class="text-center">
+
+            <a
+                href="{{ url_for('services') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left me-2"></i>
+
+                Back to Services
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

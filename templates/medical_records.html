@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Medical Records | AI Hospital</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #777;
+        }
+
+        .form-box,
+        .records-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-btn:hover {
+            background: #0056b3;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            padding: 13px;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .empty {
+            padding: 30px;
+            color: #777;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 11px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            th,
+            td {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>📋 Digital Medical Records</h1>
+
+        <p>
+            Securely manage and view patient medical records
+        </p>
+
+    </div>
+
+
+    <!-- ADD RECORD -->
+
+    <div class="form-box">
+
+        <h2>Add Medical Record</h2>
+
+        <form
+            action="{{ url_for('medical_records') }}"
+            method="POST"
+        >
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Patient Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="patient_name"
+                        placeholder="Enter patient name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Record Type
+                    </label>
+
+                    <select
+                        name="record_type"
+                        required
+                    >
+
+                        <option value="">
+                            Select Record Type
+                        </option>
+
+                        <option value="Consultation">
+                            Consultation
+                        </option>
+
+                        <option value="Diagnosis">
+                            Diagnosis
+                        </option>
+
+                        <option value="Lab Report">
+                            Lab Report
+                        </option>
+
+                        <option value="Prescription">
+                            Prescription
+                        </option>
+
+                        <option value="Follow-up">
+                            Follow-up
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Diagnosis
+                    </label>
+
+                    <input
+                        type="text"
+                        name="diagnosis"
+                        placeholder="Enter diagnosis"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Doctor Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="doctor_name"
+                        placeholder="Enter doctor name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Record Date
+                    </label>
+
+                    <input
+                        type="date"
+                        name="record_date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        name="description"
+                        placeholder="Enter medical record details"
+                    ></textarea>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="save-btn"
+            >
+
+                💾 Save Medical Record
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- RECORDS -->
+
+    <div class="records-box">
+
+        <h2>
+            Medical Records
+        </h2>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patient</th>
+                        <th>Record Type</th>
+                        <th>Diagnosis</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% if records|length == 0 %}
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="empty"
+                        >
+
+                            📋 No medical records available.
+
+                        </td>
+
+                    </tr>
+
+
+                    {% else %}
+
+
+                    {% for record in records %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                {{ record.patient_name }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ record.record_type }}
+                        </td>
+
+                        <td>
+                            {{ record.diagnosis or '-' }}
+                        </td>
+
+                        <td>
+                            {{ record.doctor_name or '-' }}
+                        </td>
+
+                        <td>
+                            {{ record.record_date or '-' }}
+                        </td>
+
+                        <td>
+                            {{ record.description or '-' }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                    {% endif %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <a
+        href="{{ url_for('services') }}"
+        class="back-btn"
+    >
+
+        ← Back to Services
+
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>

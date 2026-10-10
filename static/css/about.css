@@ -1,0 +1,668 @@
+/* =====================================================
+   AI HOSPITAL
+   ABOUT PAGE
+   ===================================================== */
+
+
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #1f2937;
+    background: #ffffff;
+}
+
+section {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+
+/* ================================
+   PAGE HEADER
+================================ */
+
+.page-header {
+    padding: 90px 20px 85px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(20, 184, 166, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #effdfb 0%,
+            #ffffff 55%,
+            #f1fbff 100%
+        );
+}
+
+.section-tag {
+    display: inline-block;
+
+    color: #0e9f94;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.page-title {
+    max-width: 850px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #075c5b;
+
+    font-size: 48px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.page-header-text {
+    max-width: 780px;
+
+    margin: 20px auto 0;
+
+    color: #64748b;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   ABOUT MAIN
+================================ */
+
+.about-main-section {
+    padding: 100px 0;
+
+    background: #ffffff;
+}
+
+.about-main-section .row {
+    align-items: center;
+}
+
+
+/* ================================
+   IMAGE
+================================ */
+
+.about-image-wrapper {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.about-main-image {
+    display: block;
+
+    width: 100%;
+
+    max-width: 560px;
+
+    height: 390px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    border: 1px solid #dcefed;
+
+    background: #f5ffff;
+
+    box-shadow:
+        0 20px 55px rgba(7, 92, 91, 0.13);
+
+    transition: 0.35s ease;
+}
+
+.about-main-image:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 28px 65px rgba(7, 92, 91, 0.18);
+}
+
+
+/* ================================
+   ABOUT CONTENT
+================================ */
+
+.section-title {
+    color: #075c5b;
+
+    font-size: 38px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.about-text {
+    color: #64748b;
+
+    font-size: 16px;
+
+    line-height: 1.85;
+
+    margin-bottom: 18px;
+}
+
+
+/* ================================
+   ABOUT FEATURES
+================================ */
+
+.about-features {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px 25px;
+
+    margin-top: 25px;
+}
+
+.about-feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #40556b;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+.about-feature i {
+    flex-shrink: 0;
+
+    color: #14b8a6;
+
+    font-size: 17px;
+}
+
+
+/* ================================
+   SECTION HEADING
+================================ */
+
+.section-heading {
+    margin-bottom: 50px;
+}
+
+.section-text {
+    max-width: 760px;
+
+    margin: 15px auto 0;
+
+    color: #64748b;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   MISSION
+================================ */
+
+.mission-section {
+    padding: 100px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f2fcfb,
+            #f8fdff
+        );
+}
+
+
+/* ================================
+   MISSION CARDS
+================================ */
+
+.about-info-card {
+    height: 100%;
+
+    padding: 38px 30px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e1efee;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 35px rgba(15, 76, 81, 0.06);
+
+    transition: 0.3s ease;
+}
+
+.about-info-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #b9e9e5;
+
+    box-shadow:
+        0 20px 50px rgba(15, 76, 81, 0.12);
+}
+
+.about-icon {
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 20px;
+
+    background: #e0f8f5;
+
+    color: #0e9f94;
+
+    font-size: 27px;
+}
+
+.about-info-card h4 {
+    margin-bottom: 13px;
+
+    color: #075c5b;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+.about-info-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* ================================
+   CAPABILITIES
+================================ */
+
+.capabilities-section {
+    padding: 100px 0;
+
+    background: #ffffff;
+}
+
+
+/* ================================
+   CAPABILITY CARDS
+================================ */
+
+.capability-card {
+    height: 100%;
+
+    padding: 30px 22px;
+
+    text-align: center;
+
+    background: #f8fdfd;
+
+    border: 1px solid #e1efee;
+
+    border-radius: 20px;
+
+    transition: 0.3s ease;
+}
+
+.capability-card:hover {
+    transform: translateY(-7px);
+
+    background: #ffffff;
+
+    border-color: #b9e9e5;
+
+    box-shadow:
+        0 18px 45px rgba(15, 76, 81, 0.10);
+}
+
+.capability-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 18px;
+
+    background: #e0f8f5;
+
+    color: #0e9f94;
+
+    font-size: 24px;
+}
+
+.capability-card h5 {
+    margin-bottom: 10px;
+
+    color: #075c5b;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.capability-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   CTA
+================================ */
+
+.cta-section {
+    padding: 80px 0 100px;
+
+    background: #ffffff;
+}
+
+.cta-box {
+    padding: 65px 30px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075c5b,
+            #0d9188
+        );
+
+    box-shadow:
+        0 20px 55px rgba(7, 92, 91, 0.18);
+}
+
+.cta-tag {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #a8fff7;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.cta-box h2 {
+    margin-bottom: 15px;
+
+    color: #ffffff;
+
+    font-size: 34px;
+
+    font-weight: 700;
+}
+
+.cta-box p {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: rgba(255, 255, 255, 0.86);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.custom-btn {
+    background: #14b8a6;
+
+    color: #ffffff;
+
+    border: 2px solid #14b8a6;
+
+    border-radius: 30px;
+
+    padding: 13px 28px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition: 0.3s ease;
+}
+
+.custom-btn:hover {
+    background: #0f968a;
+
+    border-color: #0f968a;
+
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+.cta-box .custom-btn {
+    background: #ffffff;
+
+    color: #087f7a;
+
+    border-color: #ffffff;
+}
+
+.cta-box .custom-btn:hover {
+    background: #e8fffc;
+
+    color: #075c5b;
+
+    border-color: #e8fffc;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 991px) {
+
+    .page-header {
+        padding: 75px 20px;
+    }
+
+    .page-title {
+        font-size: 42px;
+    }
+
+    .about-main-section {
+        padding: 75px 0;
+    }
+
+    .about-main-image {
+        max-width: 620px;
+
+        height: 410px;
+
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+
+    .mission-section,
+    .capabilities-section {
+        padding: 75px 0;
+    }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 767px) {
+
+    .page-header {
+        padding: 60px 18px;
+    }
+
+    .page-title {
+        font-size: 34px;
+    }
+
+    .page-header-text {
+        font-size: 16px;
+    }
+
+    .about-main-section {
+        padding: 60px 0;
+    }
+
+    .about-main-image {
+        height: 300px;
+
+        border-radius: 20px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    .about-text {
+        font-size: 15px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .mission-section,
+    .capabilities-section {
+        padding: 60px 0;
+    }
+
+    .about-info-card {
+        padding: 32px 22px;
+    }
+
+    .capability-card {
+        padding: 28px 20px;
+    }
+
+    .cta-section {
+        padding: 55px 0 70px;
+    }
+
+    .cta-box {
+        padding: 50px 20px;
+
+        border-radius: 22px;
+    }
+
+    .cta-box h2 {
+        font-size: 28px;
+    }
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+
+    .page-title {
+        font-size: 30px;
+    }
+
+    .section-title {
+        font-size: 27px;
+    }
+
+    .section-tag {
+        font-size: 12px;
+    }
+
+    .about-main-image {
+        height: 260px;
+    }
+
+    .about-feature {
+        font-size: 14px;
+    }
+
+    .about-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .capability-icon {
+        width: 55px;
+        height: 55px;
+    }
+}

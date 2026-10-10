@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if innovation %}
+Edit Innovation | Admin
+{% else %}
+Add Innovation | Admin
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+```
+<div class="row justify-content-center">
+
+    <div class="col-lg-7">
+
+        <div class="card border-0 shadow-sm">
+
+            <div class="card-body p-4 p-md-5">
+
+                <h2 class="mb-2">
+                    {% if innovation %}
+                        Edit AI Innovation
+                    {% else %}
+                        Add AI Innovation
+                    {% endif %}
+                </h2>
+
+                <p class="text-muted mb-4">
+                    {% if innovation %}
+                        Update the AI-powered healthcare feature.
+                    {% else %}
+                        Add a new AI-powered healthcare feature.
+                    {% endif %}
+                </p>
+
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label for="title" class="form-label">
+                            Innovation Title
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="title"
+                            name="title"
+                            value="{{ innovation.title if innovation else '' }}"
+                            placeholder="e.g. Smart Queue Management"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-3">
+
+                        <label for="description" class="form-label">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            rows="5"
+                            placeholder="Describe the AI healthcare feature..."
+                            required
+                        >{{ innovation.description if innovation else '' }}</textarea>
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label for="icon" class="form-label">
+                            Font Awesome Icon
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="icon"
+                            name="icon"
+                            value="{{ innovation.icon if innovation else 'fa-solid fa-brain' }}"
+                            placeholder="fa-solid fa-brain"
+                        >
+
+                        <small class="text-muted">
+                            Example: fa-solid fa-brain
+                        </small>
+
+                    </div>
+
+
+                    <div class="d-flex gap-2">
+
+                        <button
+                            type="submit"
+                            class="btn custom-btn">
+
+                            <i class="fa-solid fa-save me-2"></i>
+
+                            {% if innovation %}
+                                Update Innovation
+                            {% else %}
+                                Add Innovation
+                            {% endif %}
+
+                        </button>
+
+
+                        <a
+                            href="{{ url_for('admin_innovations') }}"
+                            class="btn btn-outline-secondary">
+
+                            Cancel
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

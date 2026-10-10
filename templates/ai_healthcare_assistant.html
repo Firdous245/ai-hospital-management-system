@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+
+{% block title %}
+AI Healthcare Assistant | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+.assistant-section {
+    padding: 70px 0;
+    min-height: 70vh;
+    background: #f7fbfb;
+}
+
+.assistant-box {
+    max-width: 850px;
+    margin: auto;
+    background: #ffffff;
+    padding: 45px;
+    border-radius: 22px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+}
+
+.assistant-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e6f8f6;
+    color: #159f98;
+    font-size: 30px;
+}
+
+.assistant-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1f2937;
+}
+
+.assistant-subtitle {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.question-input {
+    min-height: 120px;
+    resize: vertical;
+    border-radius: 14px;
+    padding: 16px;
+}
+
+.ask-btn {
+    margin-top: 18px;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 28px;
+    background: #18aaa0;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ask-btn:hover {
+    opacity: 0.9;
+}
+
+.answer-box {
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 16px;
+    background: #f2fbfa;
+    border-left: 5px solid #18aaa0;
+}
+
+.answer-title {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #173d3d;
+}
+
+.answer-box p {
+    color: #444;
+    line-height: 1.7;
+}
+
+/* ACTION BUTTONS */
+
+.answer-actions {
+    margin-top: 20px;
+}
+
+.action-btn {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    margin: 5px;
+    background: #18aaa0;
+    color: white;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    background: #128d85;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* QUICK QUESTIONS */
+
+.quick-question {
+    margin-top: 35px;
+}
+
+.quick-question p {
+    color: #333;
+}
+
+.quick-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #18aaa0;
+    background: white;
+    color: #168e88;
+    border-radius: 20px;
+    padding: 9px 17px;
+    margin: 5px;
+    transition: all 0.2s ease;
+}
+
+.quick-btn:hover {
+    background: #18aaa0;
+    color: white;
+    text-decoration: none;
+}
+
+.disclaimer {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #777;
+}
+
+@media (max-width: 768px) {
+
+    .assistant-section {
+        padding: 40px 15px;
+    }
+
+    .assistant-box {
+        padding: 30px 20px;
+    }
+
+    .assistant-title {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="assistant-section">
+
+    <div class="container">
+
+        <div class="assistant-box text-center">
+
+            <!-- AI ICON -->
+
+            <div class="assistant-icon">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1 class="assistant-title">
+                AI Healthcare Assistant
+            </h1>
+
+
+            <p class="assistant-subtitle">
+                Ask questions about hospital services, doctors,
+                appointments and general healthcare information.
+            </p>
+
+
+            <!-- QUESTION FORM -->
+
+            <form method="POST">
+
+                <textarea
+                    name="question"
+                    class="form-control question-input"
+                    placeholder="Example: How can I book an appointment?"
+                    required
+                >{{ question }}</textarea>
+
+
+                <button
+                    type="submit"
+                    class="ask-btn"
+                >
+
+                    <i class="fa-solid fa-paper-plane me-2"></i>
+
+                    Ask Assistant
+
+                </button>
+
+            </form>
+
+
+            <!-- ASSISTANT ANSWER -->
+
+            {% if answer %}
+
+            <div class="answer-box text-start">
+
+                <div class="answer-title">
+
+                    <i class="fa-solid fa-robot me-2"></i>
+
+                    Assistant Response
+
+                </div>
+
+
+                <p class="mb-0">
+                    {{ answer }}
+                </p>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="answer-actions text-center">
+
+                    {% if "appointment" in question|lower %}
+
+                        <a
+                            href="{{ url_for('appointment') }}"
+                            class="action-btn"
+                        >
+                            <i class="fa-solid fa-calendar-check me-1"></i>
+                            Book Appointment
+                        </a>
+
+                    {% elif "doctor" in question|lower
+                       or "doctors" in question|lower
+                       or "specialist" in question|lower %}
+
+                        <a
+                            href="{{ url_for('doctors') }}"
+                            class="action-btn"
+                        >
+                            <i class="fa-solid fa-user-doctor me-1"></i>
+                            Find Doctor
+                        </a>
+
+                    {% elif "symptom" in question|lower
+                       or "symptoms" in question|lower %}
+
+                        <a
+                            href="{{ url_for('ai_symptom_checker') }}"
+                            class="action-btn"
+                        >
+                            <i class="fa-solid fa-heart-pulse me-1"></i>
+                            Open Symptom Checker
+                        </a>
+
+                    {% elif "service" in question|lower
+                       or "services" in question|lower
+                       or "facility" in question|lower %}
+
+                        <a
+                            href="{{ url_for('services') }}"
+                            class="action-btn"
+                        >
+                            <i class="fa-solid fa-stethoscope me-1"></i>
+                            View Services
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- QUICK QUESTIONS -->
+
+            <div class="quick-question">
+
+                <p>
+                    <strong>Quick Questions</strong>
+                </p>
+
+
+                <a
+                    href="{{ url_for('appointment') }}"
+                    class="quick-btn"
+                >
+                    <i class="fa-solid fa-calendar-check me-1"></i>
+                    Book Appointment
+                </a>
+
+
+                <a
+                    href="{{ url_for('doctors') }}"
+                    class="quick-btn"
+                >
+                    <i class="fa-solid fa-user-doctor me-1"></i>
+                    Find Doctor
+                </a>
+
+
+                <a
+                    href="{{ url_for('services') }}"
+                    class="quick-btn"
+                >
+                    <i class="fa-solid fa-stethoscope me-1"></i>
+                    Hospital Services
+                </a>
+
+
+                <a
+                    href="{{ url_for('ai_symptom_checker') }}"
+                    class="quick-btn"
+                >
+                    <i class="fa-solid fa-heart-pulse me-1"></i>
+                    Symptom Checker
+                </a>
+
+            </div>
+
+
+            <!-- DISCLAIMER -->
+
+            <div class="disclaimer">
+
+                <i class="fa-solid fa-circle-info me-1"></i>
+
+                This assistant provides general information only
+                and does not replace professional medical advice.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

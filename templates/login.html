@@ -1,0 +1,344 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Login | AI Hospital
+{% endblock %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/login.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<section class="login-section">
+
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center min-vh-75">
+
+            <div class="col-lg-10">
+
+                <div class="login-wrapper">
+
+
+                    <!-- =================================================
+                         LEFT SIDE - INFORMATION
+                    ================================================== -->
+
+                    <div class="login-info">
+
+
+                        <span class="section-tag">
+
+                            <i class="fa-solid fa-hospital"></i>
+
+                            AI HOSPITAL
+
+                        </span>
+
+
+                        <h1>
+
+                            Smarter Healthcare,
+
+                            <span>
+                                Better Management.
+                            </span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Access your AI Hospital account and
+                            manage healthcare services through our
+                            secure digital platform.
+
+                        </p>
+
+
+
+                        <!-- FEATURES -->
+
+                        <div class="login-features">
+
+
+                            <div class="login-feature">
+
+                                <div class="feature-icon">
+
+                                    <i class="fa-solid fa-shield-halved"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Secure Access
+                                    </strong>
+
+                                    <small>
+                                        Protected account access
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="login-feature">
+
+                                <div class="feature-icon">
+
+                                    <i class="fa-solid fa-brain"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        AI-Powered Healthcare
+                                    </strong>
+
+                                    <small>
+                                        Intelligent healthcare solutions
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="login-feature">
+
+                                <div class="feature-icon">
+
+                                    <i class="fa-solid fa-database"></i>
+
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Centralized Records
+                                    </strong>
+
+                                    <small>
+                                        Organized digital information
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         RIGHT SIDE - LOGIN CARD
+                    ================================================== -->
+
+                    <div class="login-card">
+
+
+                        <!-- LOGIN HEADER -->
+
+                        <div class="login-card-header">
+
+
+                            <div class="login-icon">
+
+                                <i class="fa-solid fa-user-lock"></i>
+
+                            </div>
+
+
+                            <h2>
+
+                                Welcome Back
+
+                            </h2>
+
+
+                            <p>
+
+                                Sign in to continue to your account.
+
+                            </p>
+
+
+                        </div>
+
+
+
+                        <!-- LOGIN FORM -->
+
+                        <form
+                            method="POST"
+                            action="{{ url_for('login') }}">
+
+
+                            <!-- EMAIL -->
+
+                            <div class="login-form-group">
+
+                                <label for="email">
+
+                                    Email Address
+
+                                </label>
+
+
+                                <div class="login-input">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Enter your email"
+                                        autocomplete="email"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- PASSWORD -->
+
+                            <div class="login-form-group">
+
+                                <label for="password">
+
+                                    Password
+
+                                </label>
+
+
+                                <div class="login-input">
+
+                                    <i class="fa-solid fa-lock"></i>
+
+
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        autocomplete="current-password"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- OPTIONS -->
+
+                            <div class="login-options">
+
+
+                                <label class="remember-me">
+
+                                    <input
+                                        type="checkbox"
+                                        name="remember">
+
+
+                                    <span>
+                                        Remember me
+                                    </span>
+
+                                </label>
+
+
+                                <a href="#">
+
+                                    Forgot Password?
+
+                                </a>
+
+
+                            </div>
+
+
+
+                            <!-- LOGIN BUTTON -->
+
+                            <button
+                                type="submit"
+                                class="btn custom-btn login-btn">
+
+                                <i class="fa-solid fa-right-to-bracket"></i>
+
+                                Sign In
+
+                            </button>
+
+
+                        </form>
+
+
+
+                        <!-- DIVIDER -->
+
+                        <div class="login-divider">
+
+                            <span>
+                                Secure Hospital Access
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- SECURITY NOTE -->
+
+                        <p class="login-note">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                            Your account information is protected
+                            through secure authentication.
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,449 @@
+/* =====================================================
+   CONTACT PAGE
+===================================================== */
+
+
+/* ================= CONTACT HEADER ================= */
+
+.contact-header {
+    background:
+        linear-gradient(
+            135deg,
+            #effcfb,
+            #ffffff,
+            #eef9ff
+        );
+}
+
+
+/* ================= CONTACT SECTION ================= */
+
+.contact-section {
+    background: var(--background);
+}
+
+
+/* ================= CONTACT INTRO ================= */
+
+.contact-intro {
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+
+/* ================= CONTACT INFORMATION CARD ================= */
+
+.contact-info-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.contact-info-card:hover {
+    transform: translateX(5px);
+
+    border-color:
+        rgba(20, 184, 166, 0.25);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ================= CONTACT ICON ================= */
+
+.contact-icon {
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(20, 184, 166, 0.10);
+
+    color: var(--secondary);
+
+    font-size: 18px;
+}
+
+
+.contact-info-card h5 {
+    color: var(--primary-dark);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+
+.contact-info-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* ================= CONTACT FORM CARD ================= */
+
+.contact-form-card {
+    padding: 35px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ================= FORM HEADER ================= */
+
+.contact-form-header {
+    margin-bottom: 28px;
+}
+
+
+.contact-form-header h3 {
+    color: var(--primary-dark);
+
+    font-size: 25px;
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+
+.contact-form-header p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    margin: 0;
+}
+
+
+/* ================= FORM LABEL ================= */
+
+.contact-form-card label {
+    display: block;
+
+    color: var(--primary-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+
+/* ================= FORM INPUT ================= */
+
+.contact-form-card .form-control {
+    min-height: 50px;
+
+    padding: 12px 15px;
+
+    color: var(--text);
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    box-shadow: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.contact-form-card textarea.form-control {
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+
+.contact-form-card .form-control::placeholder {
+    color: #94a3b8;
+}
+
+
+.contact-form-card .form-control:focus {
+    border-color: var(--secondary);
+
+    box-shadow:
+        0 0 0 3px rgba(20, 184, 166, 0.10);
+}
+
+
+/* ================= SELECT ================= */
+
+.contact-form-card select.form-control {
+    cursor: pointer;
+}
+
+
+/* ================= SUBMIT BUTTON ================= */
+
+.contact-submit {
+    min-height: 50px;
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.contact-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(20, 184, 166, 0.20);
+}
+
+
+/* ================= EMERGENCY SECTION ================= */
+
+.emergency-section {
+    background: var(--background);
+}
+
+
+/* ================= EMERGENCY BOX ================= */
+
+.emergency-box {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ed,
+            #ffffff
+        );
+
+    border: 1px solid #fed7aa;
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* ================= EMERGENCY ICON ================= */
+
+.emergency-icon {
+    flex-shrink: 0;
+
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #ffedd5;
+
+    color: #ea580c;
+
+    font-size: 22px;
+}
+
+
+/* ================= EMERGENCY TEXT ================= */
+
+.emergency-box h3 {
+    color: var(--primary-dark);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    margin-bottom: 6px;
+}
+
+
+.emergency-box p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* ================= CTA ================= */
+
+.contact-cta {
+    background: var(--white);
+}
+
+
+.contact-cta .cta-box {
+    padding: 50px 30px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf9,
+            #f0f9ff
+        );
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.contact-cta .cta-box h2 {
+    color: var(--primary-dark);
+
+    font-size: 29px;
+    font-weight: 800;
+}
+
+
+.contact-cta .cta-box p {
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    margin-top: 10px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 991px) {
+
+    .contact-form-card {
+        margin-top: 20px;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .contact-form-card {
+        padding: 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .contact-info-card {
+        padding: 16px;
+    }
+
+
+    .emergency-box {
+        align-items: flex-start;
+
+        padding: 22px;
+
+        gap: 15px;
+    }
+
+
+    .contact-cta .cta-box {
+        padding: 40px 20px;
+    }
+
+
+    .contact-cta .cta-box h2 {
+        font-size: 25px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .contact-form-card {
+        padding: 20px;
+    }
+
+
+    .contact-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 16px;
+    }
+
+
+    .emergency-icon {
+        width: 50px;
+        height: 50px;
+
+        font-size: 19px;
+    }
+
+
+    .emergency-box h3 {
+        font-size: 18px;
+    }
+
+}

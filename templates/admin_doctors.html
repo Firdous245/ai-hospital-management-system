@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Doctors</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f8f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 32px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #078b87;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #078b87;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #078b87;
+            margin-top: 10px;
+        }
+
+        .form-box {
+            background: #f7fbfc;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 35px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .add-btn {
+            margin-top: 18px;
+            background: #078b87;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .add-btn:hover {
+            background: #056d6a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #078b87;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 13px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b02a37;
+        }
+
+        .message {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background: #e8f7e8;
+            color: #28752c;
+        }
+
+        @media (max-width: 800px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 20px;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="{{ url_for('admin_dashboard') }}" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+    <h1>Manage Doctors</h1>
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ADD DOCTOR FORM -->
+
+    <div class="form-box">
+
+        <h2>Add New Doctor</h2>
+
+        <form action="{{ url_for('add_doctor') }}" method="POST">
+
+            <div class="form-grid">
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Doctor Name"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="specialization"
+                    placeholder="Specialization"
+                    required
+                >
+
+                <input
+                    type="text"
+                    name="department"
+                    placeholder="Department"
+                >
+
+                <input
+                    type="text"
+                    name="phone"
+                    placeholder="Phone"
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="number"
+                    name="experience"
+                    placeholder="Experience (Years)"
+                    min="0"
+                >
+
+                <select name="availability">
+
+                    <option value="">
+                        Select Availability
+                    </option>
+
+                    <option value="Available">
+                        Available
+                    </option>
+
+                    <option value="Unavailable">
+                        Unavailable
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="add-btn"
+            >
+                + Add Doctor
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- DOCTORS TABLE -->
+
+    <h2>All Doctors</h2>
+
+    {% if doctors %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Department</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Experience</th>
+                    <th>Availability</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for doctor in doctors %}
+
+                    <tr>
+
+                        <td>{{ doctor.id }}</td>
+
+                        <td>{{ doctor.name }}</td>
+
+                        <td>
+                            {{ doctor.specialization }}
+                        </td>
+
+                        <td>
+                            {{ doctor.department or '-' }}
+                        </td>
+
+                        <td>
+                            {{ doctor.phone or '-' }}
+                        </td>
+
+                        <td>
+                            {{ doctor.email or '-' }}
+                        </td>
+
+                        <td>
+                            {{ doctor.experience or 0 }} years
+                        </td>
+
+                        <td>
+                            {{ doctor.availability or '-' }}
+                        </td>
+                        <td>
+
+    <a
+        href="{{ url_for('edit_doctor', doctor_id=doctor.id) }}"
+        style="
+            background: #078b87;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 5px;
+        "
+    >
+        Edit
+    </a>
+
+    <form
+        action="{{ url_for('delete_doctor', doctor_id=doctor.id) }}"
+        method="POST"
+        style="display: inline;"
+        onsubmit="return confirm('Are you sure you want to delete this doctor?');"
+    >
+
+        <button
+            type="submit"
+            class="delete-btn"
+        >
+            Delete
+        </button>
+
+    </form>
+
+</td>
+                       
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <p>No doctors found.</p>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

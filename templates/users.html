@@ -1,0 +1,445 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Management | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+    .users-page {
+        padding: 50px 0;
+    }
+
+    .page-header {
+        background: linear-gradient(
+            135deg,
+            #19b5a5,
+            #087f7a
+        );
+
+        color: white;
+        padding: 35px;
+        border-radius: 20px;
+        margin-bottom: 35px;
+    }
+
+    .page-header h1 {
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .page-header p {
+        margin: 0;
+        opacity: 0.9;
+    }
+
+    .management-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 25px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        margin-bottom: 30px;
+    }
+
+    .management-card h3 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .form-control,
+    .form-select {
+        min-height: 48px;
+        border-radius: 10px;
+    }
+
+    .add-btn {
+        min-height: 48px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .table {
+        vertical-align: middle;
+    }
+
+    .table thead th {
+        background: #f1f7f7;
+        font-weight: 700;
+        border: none;
+    }
+
+    .table tbody td {
+        padding: 16px 12px;
+    }
+
+    .role-badge {
+        padding: 7px 12px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 600;
+        background: #e5f8f6;
+        color: #087f7a;
+    }
+
+    .delete-btn {
+        border-radius: 8px;
+    }
+
+    .back-btn {
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+
+        .users-page {
+            padding: 25px 10px;
+        }
+
+        .page-header {
+            padding: 25px;
+        }
+
+        .management-card {
+            padding: 18px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container users-page">
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <h1>
+            <i class="fa-solid fa-users me-2"></i>
+            User Management
+        </h1>
+
+        <p>
+            Manage AI Hospital users and their account roles.
+        </p>
+
+    </div>
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="alert alert-{{ category }} alert-dismissible fade show">
+
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                    </button>
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ADD USER -->
+
+    <div class="management-card">
+
+        <h3>
+            <i class="fa-solid fa-user-plus me-2"></i>
+            Add New User
+        </h3>
+
+        <form
+            method="POST"
+            action="{{ url_for('add_user') }}">
+
+            <div class="row g-3">
+
+                <!-- Name -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Enter full name"
+                        required>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Enter email"
+                        required>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Enter password"
+                        required>
+
+                </div>
+
+
+                <!-- Role -->
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Role
+                    </label>
+
+                    <select
+                        name="role"
+                        class="form-select">
+
+                        <option value="patient">
+                            Patient
+                        </option>
+
+                        <option value="doctor">
+                            Doctor
+                        </option>
+
+                        <option value="admin">
+                            Admin
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Button -->
+
+                <div class="col-12">
+
+                    <button
+                        type="submit"
+                        class="btn btn-success add-btn">
+
+                        <i class="fa-solid fa-plus me-2"></i>
+
+                        Add User
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <!-- USERS TABLE -->
+
+    <div class="management-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h3 class="mb-0">
+                <i class="fa-solid fa-list me-2"></i>
+                All Users
+            </h3>
+
+            <span class="badge bg-secondary">
+                {{ users|length }} Users
+            </span>
+
+        </div>
+
+
+        <div class="table-responsive">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Role</th>
+
+                        <th>Created</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <td>
+                            #{{ user.id }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                {{ user.name }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ user.email }}
+                        </td>
+
+                        <td>
+
+                            <span class="role-badge">
+
+                                {{ user.role|capitalize }}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            {% if user.created_at %}
+
+                                {{ user.created_at.strftime('%d %b %Y') }}
+
+                            {% else %}
+
+                                -
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if user.id != session.get('user_id') %}
+
+                            <form
+                                method="POST"
+                                action="{{ url_for('delete_user', user_id=user.id) }}"
+                                onsubmit="return confirm('Are you sure you want to delete this user?');">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-outline-danger btn-sm delete-btn">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </form>
+
+                            {% else %}
+
+                            <span class="text-muted">
+                                Current User
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            class="text-center py-4">
+
+                            No users found.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <a
+        href="{{ url_for('admin_dashboard') }}"
+        class="back-btn">
+
+        <i class="fa-solid fa-arrow-left me-2"></i>
+
+        Back to Dashboard
+
+    </a>
+
+</div>
+
+{% endblock %}

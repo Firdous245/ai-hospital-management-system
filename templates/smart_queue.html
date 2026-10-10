@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Queue | AI Hospital</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef9f8, #f7fbfc);
+            color: #263238;
+        }
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+            background: #078b87;
+            padding: 18px 30px;
+            color: white;
+        }
+
+        .navbar-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.6);
+            padding: 9px 16px;
+            border-radius: 8px;
+        }
+
+        .home-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ================================
+           MAIN
+        ================================= */
+
+        .container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            color: #078b87;
+            margin-bottom: 8px;
+            font-size: 36px;
+        }
+
+        .page-heading p {
+            color: #6c757d;
+            font-size: 16px;
+        }
+
+        /* ================================
+           FLASH MESSAGE
+        ================================= */
+
+        .message {
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #fff3cd;
+            color: #856404;
+            margin-bottom: 25px;
+            border: 1px solid #ffe69c;
+        }
+
+        /* ================================
+           QUEUE CARD
+        ================================= */
+
+        .queue-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .doctor-section {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .doctor-icon {
+            width: 75px;
+            height: 75px;
+            margin: auto;
+            border-radius: 50%;
+            background: #e4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 34px;
+        }
+
+        .doctor-section h2 {
+            margin: 15px 0 5px;
+            color: #078b87;
+        }
+
+        .specialization {
+            color: #777;
+            margin: 0;
+        }
+
+        .department {
+            color: #999;
+            margin-top: 7px;
+        }
+
+        /* ================================
+           APPOINTMENT INFO
+        ================================= */
+
+        .appointment-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 30px 0;
+        }
+
+        .info-box {
+            background: #f5faf9;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .info-label {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .info-value {
+            font-weight: bold;
+            font-size: 17px;
+            color: #263238;
+        }
+
+        /* ================================
+           TOKEN
+        ================================= */
+
+        .token-section {
+            text-align: center;
+            background: linear-gradient(135deg, #078b87, #0aa49f);
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        .token-label {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .token {
+            font-size: 75px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .token-description {
+            opacity: 0.9;
+        }
+
+        /* ================================
+           STATUS
+        ================================= */
+
+        .status {
+            text-align: center;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .status-next {
+            background: #e7f8e8;
+            color: #28752c;
+        }
+
+        .status-waiting {
+            background: #fff4d6;
+            color: #856404;
+        }
+
+        /* ================================
+           QUEUE DETAILS
+        ================================= */
+
+        .queue-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .detail-card {
+            background: #f8fafa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .detail-icon {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .detail-title {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            margin-top: 7px;
+            font-size: 21px;
+            font-weight: bold;
+            color: #078b87;
+        }
+
+        /* ================================
+           BUTTONS
+        ================================= */
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+
+        .refresh-btn {
+            background: #078b87;
+            color: white;
+        }
+
+        .refresh-btn:hover {
+            background: #056d6a;
+        }
+
+        .back-btn {
+            background: #eeeeee;
+            color: #444;
+        }
+
+        .back-btn:hover {
+            background: #dddddd;
+        }
+
+        /* ================================
+           LIVE STATUS
+        ================================= */
+
+        .live-status {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .live-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #2eaf4a;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        /* ================================
+           NO APPOINTMENT
+        ================================= */
+
+        .empty-card {
+            background: white;
+            padding: 50px 30px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .empty-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .empty-card h2 {
+            color: #078b87;
+        }
+
+        .empty-card p {
+            color: #777;
+        }
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 18px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+            .page-heading h1 {
+                font-size: 28px;
+            }
+
+            .queue-card {
+                padding: 22px;
+            }
+
+            .appointment-info,
+            .queue-details {
+                grid-template-columns: 1fr;
+            }
+
+            .token {
+                font-size: 60px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     NAVBAR
+===================================== -->
+
+<nav class="navbar">
+
+    <div class="navbar-content">
+
+        <div class="logo">
+            🏥 AI Hospital
+        </div>
+
+        <a href="{{ url_for('home') }}"
+           class="home-btn">
+
+            ← Home
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================
+     MAIN CONTENT
+===================================== -->
+
+<div class="container">
+
+
+    <div class="page-heading">
+
+        <h1>
+            Smart Queue Management
+        </h1>
+
+        <p>
+            Track your appointment queue and estimated waiting time.
+        </p>
+
+    </div>
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    {% if queue_data %}
+
+
+    <!-- =================================
+         QUEUE CARD
+    ================================== -->
+
+    <div class="queue-card">
+
+
+        <!-- DOCTOR -->
+
+        <div class="doctor-section">
+
+            <div class="doctor-icon">
+                👨‍⚕️
+            </div>
+
+            <h2>
+                Dr. {{ queue_data.doctor_name }}
+            </h2>
+
+            <p class="specialization">
+                {{ queue_data.specialization }}
+            </p>
+
+            {% if queue_data.department %}
+
+                <p class="department">
+                    {{ queue_data.department }}
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- APPOINTMENT INFORMATION -->
+
+        <div class="appointment-info">
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    📅 Appointment Date
+                </span>
+
+                <span class="info-value">
+                    {{ queue_data.date }}
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <span class="info-label">
+                    🕐 Appointment Time
+                </span>
+
+                <span class="info-value">
+                    {{ queue_data.time }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOKEN -->
+
+        <div class="token-section">
+
+            <div class="token-label">
+                YOUR TOKEN NUMBER
+            </div>
+
+            <div class="token">
+                {{ queue_data.token }}
+            </div>
+
+            <div class="token-description">
+                Keep this token number for your appointment.
+            </div>
+
+        </div>
+
+
+        <!-- QUEUE STATUS -->
+
+        {% if queue_data.patients_ahead == 0 %}
+
+            <div class="status status-next">
+
+                🟢 You are next!
+
+            </div>
+
+        {% else %}
+
+            <div class="status status-waiting">
+
+                🟡
+                {{ queue_data.patients_ahead }}
+                patient(s) are ahead of you.
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- QUEUE DETAILS -->
+
+        <div class="queue-details">
+
+
+            <div class="detail-card">
+
+                <div class="detail-icon">
+                    👥
+                </div>
+
+                <div class="detail-title">
+                    Patients Ahead
+                </div>
+
+                <div class="detail-value">
+                    {{ queue_data.patients_ahead }}
+                </div>
+
+            </div>
+
+
+            <div class="detail-card">
+
+                <div class="detail-icon">
+                    ⏳
+                </div>
+
+                <div class="detail-title">
+                    Estimated Waiting Time
+                </div>
+
+                <div class="detail-value">
+                    {{ queue_data.waiting }}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <a href="{{ url_for('smart_queue') }}"
+               class="btn refresh-btn">
+
+                🔄 Refresh Queue
+
+            </a>
+
+
+            <a href="{{ url_for('my_appointments') }}"
+               class="btn back-btn">
+
+                📋 My Appointments
+
+            </a>
+
+        </div>
+
+
+        <!-- LIVE STATUS -->
+
+        <div class="live-status">
+
+            <span class="live-dot"></span>
+
+            Queue information is updated when you refresh.
+
+        </div>
+
+
+    </div>
+
+
+    {% else %}
+
+
+    <!-- =================================
+         NO APPROVED APPOINTMENT
+    ================================== -->
+
+    <div class="empty-card">
+
+        <div class="empty-icon">
+            📅
+        </div>
+
+        <h2>
+            No Queue Available
+        </h2>
+
+        <p>
+            You currently do not have an approved appointment
+            available in the queue.
+        </p>
+
+        <div class="actions">
+
+            <a href="{{ url_for('appointment') }}"
+               class="btn refresh-btn">
+
+                📅 Book Appointment
+
+            </a>
+
+            <a href="{{ url_for('my_appointments') }}"
+               class="btn back-btn">
+
+                📋 My Appointments
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+<!-- =====================================
+     AUTO REFRESH
+===================================== -->
+
+{% if queue_data %}
+
+<script>
+
+    /*
+       Automatically refresh queue every 30 seconds.
+       This calls the same Flask route again,
+       so the latest appointment queue is calculated.
+    */
+
+    setTimeout(function() {
+
+        window.location.reload();
+
+    }, 30000);
+
+</script>
+
+{% endif %}
+
+
+</body>
+
+</html>

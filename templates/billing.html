@@ -1,0 +1,546 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Billing Management | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+    .billing-header {
+        padding: 70px 0 55px;
+    }
+
+    .billing-section {
+        padding: 60px 0;
+    }
+
+    .billing-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        border: 1px solid #eef2f7;
+    }
+
+    .billing-card h3 {
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #dfe5ec;
+        border-radius: 9px;
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0,123,255,0.08);
+    }
+
+    .save-btn {
+        border: none;
+        padding: 12px 28px;
+        border-radius: 8px;
+        background: #007bff;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .save-btn:hover {
+        background: #0056b3;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .billing-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .billing-table th {
+        background: #007bff;
+        color: white;
+        padding: 14px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .billing-table td {
+        padding: 14px;
+        text-align: center;
+        border-bottom: 1px solid #edf0f4;
+    }
+
+    .billing-table tbody tr:hover {
+        background: #f8fbff;
+    }
+
+    .total {
+        font-weight: 700;
+        color: #007bff;
+    }
+
+    .paid {
+        background: #d1e7dd;
+        color: #0f5132;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .pending {
+        background: #fff3cd;
+        color: #664d03;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .empty-message {
+        padding: 35px !important;
+        color: #777;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 11px 20px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .back-btn:hover {
+        background: #0056b3;
+        color: white;
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- ================= HEADER ================= -->
+
+<section class="page-header billing-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+
+            BILLING SERVICES
+
+        </span>
+
+        <h1 class="page-title mt-3">
+            Billing Management
+        </h1>
+
+        <p class="page-header-text">
+
+            Manage consultation, laboratory and medicine
+            charges through one centralized billing system.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BILLING ================= -->
+
+<section class="billing-section">
+
+    <div class="container">
+
+
+        <!-- CREATE BILL -->
+
+        <div class="billing-card mb-4">
+
+            <div class="text-center mb-4">
+
+                <span class="section-tag">
+                    PATIENT BILLING
+                </span>
+
+                <h3 class="mt-2">
+                    Create Bill
+                </h3>
+
+            </div>
+
+
+            <form
+                action="{{ url_for('billing') }}"
+                method="POST"
+            >
+
+                <div class="row g-4">
+
+
+                    <!-- PATIENT -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Patient Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="patient_name"
+                                placeholder="Enter patient name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONSULTATION -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Consultation Fee (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                name="consultation_fee"
+                                min="0"
+                                step="0.01"
+                                value="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LAB -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Laboratory Charges (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                name="lab_charges"
+                                min="0"
+                                step="0.01"
+                                value="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MEDICINE -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Medicine Charges (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                name="medicine_charges"
+                                min="0"
+                                step="0.01"
+                                value="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OTHER -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Other Charges (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                name="other_charges"
+                                min="0"
+                                step="0.01"
+                                value="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STATUS -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Payment Status
+                            </label>
+
+                            <select
+                                name="payment_status"
+                                required
+                            >
+
+                                <option value="Pending">
+                                    Pending
+                                </option>
+
+                                <option value="Paid">
+                                    Paid
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATE -->
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+
+                            <label>
+                                Bill Date
+                            </label>
+
+                            <input
+                                type="date"
+                                name="bill_date"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="text-center">
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+
+                        <i class="fa-solid fa-file-invoice me-2"></i>
+
+                        Generate Bill
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- BILL HISTORY -->
+
+        <div class="billing-card">
+
+            <div class="text-center mb-4">
+
+                <span class="section-tag">
+                    BILL HISTORY
+                </span>
+
+                <h3 class="mt-2">
+                    My Bills
+                </h3>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="billing-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Patient</th>
+                            <th>Consultation</th>
+                            <th>Laboratory</th>
+                            <th>Medicine</th>
+                            <th>Other</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% if bills|length == 0 %}
+
+                        <tr>
+
+                            <td
+                                colspan="8"
+                                class="empty-message"
+                            >
+
+                                💳 No bills available.
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        {% for bill in bills %}
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    {{ bill.patient_name }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                ₹{{ bill.consultation_fee }}
+                            </td>
+
+                            <td>
+                                ₹{{ bill.lab_charges }}
+                            </td>
+
+                            <td>
+                                ₹{{ bill.medicine_charges }}
+                            </td>
+
+                            <td>
+                                ₹{{ bill.other_charges }}
+                            </td>
+
+                            <td class="total">
+                                ₹{{ bill.total_amount }}
+                            </td>
+
+                            <td>
+
+                                {% if bill.payment_status == 'Paid' %}
+
+                                <span class="paid">
+                                    ✓ Paid
+                                </span>
+
+                                {% else %}
+
+                                <span class="pending">
+                                    ⏳ Pending
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+                                {{ bill.bill_date }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK -->
+
+        <div class="text-center">
+
+            <a
+                href="{{ url_for('services') }}"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left me-2"></i>
+
+                Back to Services
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

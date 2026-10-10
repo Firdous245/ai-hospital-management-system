@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Doctor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f8f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 32px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #078b87;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #078b87;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .update-btn {
+            margin-top: 20px;
+            background: #078b87;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .update-btn:hover {
+            background: #056d6a;
+        }
+
+        .message {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background: #e8f7e8;
+            color: #28752c;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a
+        href="{{ url_for('admin_doctors') }}"
+        class="back-btn"
+    >
+        ← Back to Doctors
+    </a>
+
+    <h1>Edit Doctor</h1>
+
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- EDIT DOCTOR FORM -->
+
+    <form
+        action="{{ url_for('edit_doctor', doctor_id=doctor.id) }}"
+        method="POST"
+    >
+
+        <div class="form-grid">
+
+            <input
+                type="text"
+                name="name"
+                value="{{ doctor.name }}"
+                placeholder="Doctor Name"
+                required
+            >
+
+            <input
+                type="text"
+                name="specialization"
+                value="{{ doctor.specialization }}"
+                placeholder="Specialization"
+                required
+            >
+
+            <input
+                type="text"
+                name="department"
+                value="{{ doctor.department or '' }}"
+                placeholder="Department"
+            >
+
+            <input
+                type="text"
+                name="phone"
+                value="{{ doctor.phone or '' }}"
+                placeholder="Phone"
+            >
+
+            <input
+                type="email"
+                name="email"
+                value="{{ doctor.email or '' }}"
+                placeholder="Email"
+            >
+
+            <input
+                type="number"
+                name="experience"
+                value="{{ doctor.experience or 0 }}"
+                placeholder="Experience (Years)"
+                min="0"
+            >
+
+            <select name="availability">
+
+                <option value="">
+                    Select Availability
+                </option>
+
+                <option
+                    value="Available"
+                    {% if doctor.availability == "Available" %}
+                        selected
+                    {% endif %}
+                >
+                    Available
+                </option>
+
+                <option
+                    value="Unavailable"
+                    {% if doctor.availability == "Unavailable" %}
+                        selected
+                    {% endif %}
+                >
+                    Unavailable
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="update-btn"
+        >
+            Update Doctor
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

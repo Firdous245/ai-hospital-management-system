@@ -1,0 +1,249 @@
+/* =====================================================
+   AI HOSPITAL MANAGEMENT SYSTEM
+   GLOBAL / COMMON STYLES
+===================================================== */
+
+:root {
+    --primary: #0b6e69;
+    --primary-dark: #07534f;
+    --secondary: #14b8a6;
+    --accent: #38bdf8;
+
+    --background: #f5fbfa;
+    --white: #ffffff;
+
+    --text: #1f2937;
+    --muted: #64748b;
+    --border: #e2e8f0;
+
+    --shadow-sm: 0 5px 20px rgba(15, 23, 42, 0.08);
+    --shadow-md: 0 15px 35px rgba(15, 23, 42, 0.12);
+}
+
+
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.custom-navbar {
+    background: rgba(11, 110, 105, 0.97);
+    padding: 14px 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+    color: var(--white) !important;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.navbar-brand i {
+    color: #8ff3e8;
+    margin-right: 7px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    margin-left: 15px;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #8ff3e8 !important;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.custom-btn {
+    background: var(--secondary);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 11px 25px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.custom-btn:hover {
+    background: var(--primary-dark);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* ================= COMMON SECTIONS ================= */
+
+.section-tag {
+    color: var(--secondary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.section-title {
+    color: var(--primary-dark);
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.section-text {
+    color: var(--muted);
+    max-width: 720px;
+    margin: 15px auto;
+}
+
+
+/* ================= FOOTER ================= */
+
+.hospital-footer {
+    background: #062f2d;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 70px 0 20px;
+}
+
+.footer-brand {
+    color: var(--white);
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.footer-brand i {
+    color: var(--secondary);
+    margin-right: 7px;
+}
+
+.footer-text {
+    max-width: 350px;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-title {
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--secondary);
+    padding-left: 4px;
+}
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-contact li {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.footer-contact i {
+    color: var(--secondary);
+    margin-top: 5px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 45px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+}
+
+
+/* ================= COMMON RESPONSIVE ================= */
+
+@media (max-width: 991px) {
+
+    .navbar-nav {
+        padding-top: 15px;
+    }
+
+    .nav-link {
+        margin-left: 0;
+        padding: 8px 0 !important;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}

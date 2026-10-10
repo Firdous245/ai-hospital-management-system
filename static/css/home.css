@@ -1,0 +1,676 @@
+/* =========================================================
+   AI HOSPITAL - HOME PAGE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #1f2937;
+    background: #ffffff;
+}
+
+section {
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+.hero-section {
+    min-height: 600px;
+    padding: 80px 0 90px;
+
+    background:
+        radial-gradient(
+            circle at 85% 45%,
+            rgba(20, 184, 166, 0.10),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #f4ffff 0%,
+            #ffffff 52%,
+            #eefbff 100%
+        );
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-section .row {
+    min-height: 500px;
+    align-items: center;
+}
+
+
+/* =========================================================
+   HERO LEFT SIDE
+   ========================================================= */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 10px 18px;
+
+    background: #dff8f6;
+    color: #087f7a;
+
+    border-radius: 30px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+}
+
+.hero-badge i {
+    font-size: 15px;
+}
+
+
+.hero-title {
+    margin-top: 20px;
+    margin-bottom: 22px;
+
+    font-size: 58px;
+    line-height: 1.08;
+
+    font-weight: 750;
+
+    letter-spacing: -1.5px;
+
+    color: #075c5b;
+}
+
+.hero-title span {
+    display: block;
+    color: #14b8a6;
+}
+
+
+.hero-text {
+    max-width: 650px;
+
+    margin-bottom: 0;
+
+    font-size: 19px;
+    line-height: 1.8;
+
+    color: #58708a;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+   ========================================================= */
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.custom-btn {
+    background: #14b8a6;
+    color: #ffffff;
+
+    border: 2px solid #14b8a6;
+
+    border-radius: 30px;
+
+    padding: 13px 27px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover {
+    background: #0f968a;
+    border-color: #0f968a;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+
+.hero-buttons .btn-outline-primary {
+    color: #1269e8;
+
+    border: 1.5px solid #1269e8;
+
+    border-radius: 10px;
+
+    padding: 13px 25px;
+
+    font-size: 17px;
+
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .btn-outline-primary:hover {
+    background: #1269e8;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO IMAGE
+   ========================================================= */
+
+.hero-section .col-lg-6:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-left: 25px;
+}
+
+
+/*
+   IMPORTANT:
+   No white card, no border and no shadow.
+*/
+
+.hero-image {
+    display: block;
+
+    width: 115%;
+    max-width: 650px;
+
+    height: auto;
+
+    margin: 0 auto;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    border-radius: 0;
+
+    transform: scale(1.08);
+
+    transition: transform 0.35s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.13);
+}
+
+
+/* =========================================================
+   SMART HEALTHCARE SECTION
+   ========================================================= */
+
+.intro-section {
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+
+    background: #ffffff;
+}
+
+
+.section-tag {
+    display: inline-block;
+
+    color: #10a99a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.section-title {
+    color: #075c5b;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+
+.section-text {
+    max-width: 750px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #64748b;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   FEATURE CARDS
+   ========================================================= */
+
+.feature-card {
+    height: 100%;
+
+    padding: 35px 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5f2f1;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 35px rgba(15, 76, 81, 0.07);
+
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 18px 45px rgba(15, 76, 81, 0.12);
+
+    border-color: #b9ece7;
+}
+
+
+.feature-card i {
+    width: 65px;
+    height: 65px;
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    border-radius: 18px;
+
+    background: #e1f8f5;
+
+    color: #0e9f94;
+
+    font-size: 28px;
+}
+
+
+.feature-card h4 {
+    margin-bottom: 13px;
+
+    color: #075c5b;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+.feature-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   AI HIGHLIGHT SECTION
+   ========================================================= */
+
+.ai-highlight-section {
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fcfb,
+            #f8fdff
+        );
+}
+
+
+.ai-highlight-section .row {
+    min-height: 400px;
+}
+
+
+.ai-highlight-section .section-text {
+    max-width: 650px;
+
+    margin-left: 0;
+}
+
+
+.ai-highlight-section p {
+    color: #52657a;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+.ai-highlight-section .fa-circle-check {
+    color: #14b8a6 !important;
+}
+
+
+/* =========================================================
+   WHY CHOOSE US
+   ========================================================= */
+
+.why-section {
+    padding-top: 90px !important;
+    padding-bottom: 90px !important;
+
+    background: #ffffff;
+}
+
+
+.why-card {
+    height: 100%;
+
+    padding: 30px 22px;
+
+    text-align: center;
+
+    background: #f8fdfd;
+
+    border: 1px solid #e4f3f1;
+
+    border-radius: 18px;
+
+    transition: all 0.3s ease;
+}
+
+
+.why-card:hover {
+    transform: translateY(-7px);
+
+    background: #ffffff;
+
+    box-shadow: 0 15px 40px rgba(15, 76, 81, 0.10);
+}
+
+
+.why-card i {
+    width: 55px;
+    height: 55px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 17px;
+
+    border-radius: 50%;
+
+    background: #dff8f6;
+
+    color: #0e9f94;
+
+    font-size: 22px;
+}
+
+
+.why-card h5 {
+    color: #075c5b;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+
+.why-card p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CTA SECTION
+   ========================================================= */
+
+.cta-section {
+    padding-top: 70px !important;
+    padding-bottom: 90px !important;
+
+    background: #ffffff;
+}
+
+
+.cta-box {
+    padding: 65px 30px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075c5b,
+            #0d8f86
+        );
+
+    box-shadow: 0 20px 50px rgba(7, 92, 91, 0.18);
+}
+
+
+.cta-box h2 {
+    color: #ffffff;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+.cta-box p {
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 17px;
+
+    margin-bottom: 0;
+}
+
+
+.cta-box .custom-btn {
+    background: #ffffff;
+
+    color: #087f7a;
+
+    border-color: #ffffff;
+}
+
+
+.cta-box .custom-btn:hover {
+    background: #e8fffc;
+
+    color: #075c5b;
+
+    border-color: #e8fffc;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1199px) {
+
+    .hero-title {
+        font-size: 50px;
+    }
+
+    .hero-image {
+        max-width: 590px;
+        transform: scale(1.05);
+    }
+}
+
+
+@media (max-width: 991px) {
+
+    .hero-section {
+        padding: 70px 0 80px;
+
+        text-align: center;
+    }
+
+    .hero-section .row {
+        min-height: auto;
+    }
+
+    .hero-title {
+        font-size: 46px;
+    }
+
+    .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-section .col-lg-6:last-child {
+        padding-left: 12px;
+
+        margin-top: 45px;
+    }
+
+    .hero-image {
+        max-width: 600px;
+
+        transform: scale(1);
+    }
+
+    .hero-image:hover {
+        transform: scale(1.02);
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .hero-section {
+        padding: 60px 0 70px;
+    }
+
+    .hero-title {
+        font-size: 39px;
+
+        letter-spacing: -0.8px;
+    }
+
+    .hero-text {
+        font-size: 17px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .hero-buttons .btn {
+        margin-left: 0 !important;
+
+        width: auto;
+    }
+
+    .hero-image {
+        max-width: 520px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    .intro-section,
+    .ai-highlight-section,
+    .why-section {
+        padding-top: 65px !important;
+        padding-bottom: 65px !important;
+    }
+
+    .cta-box {
+        padding: 50px 20px;
+    }
+
+    .cta-box h2 {
+        font-size: 28px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .hero-title {
+        font-size: 34px;
+    }
+
+    .hero-badge {
+        font-size: 13px;
+
+        padding: 9px 14px;
+    }
+
+    .hero-image {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 27px;
+    }
+}

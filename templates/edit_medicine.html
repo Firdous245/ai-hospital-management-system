@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Medicine | AI Hospital</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef9f8;
+            color: #263238;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #078b87;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d5dddd;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .update-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #078b87;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #078b87;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>✏️ Edit Medicine</h1>
+
+        <form
+            action="{{ url_for('edit_medicine', reminder_id=reminder.id) }}"
+            method="POST"
+        >
+
+            <div class="form-group">
+
+                <label>Medicine Name</label>
+
+                <input
+                    type="text"
+                    name="medicine_name"
+                    value="{{ reminder.medicine_name }}"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Dosage</label>
+
+                <input
+                    type="text"
+                    name="dosage"
+                    value="{{ reminder.dosage or '' }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Reminder Time</label>
+
+                <input
+                    type="time"
+                    name="reminder_time"
+                    value="{{ reminder.reminder_time }}"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Start Date</label>
+
+                <input
+                    type="date"
+                    name="start_date"
+                    value="{{ reminder.start_date }}"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>End Date</label>
+
+                <input
+                    type="date"
+                    name="end_date"
+                    value="{{ reminder.end_date }}"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="update-btn"
+            >
+                💾 Update Reminder
+            </button>
+
+        </form>
+
+        <a
+            href="{{ url_for('medicine_reminder') }}"
+            class="back-btn"
+        >
+            ← Back to Medicine Reminders
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,544 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Contact Us | AI Hospital
+{% endblock %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/contact.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =====================================================
+     CONTACT HEADER
+===================================================== -->
+
+<section class="page-header contact-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+
+            <i class="fa-solid fa-envelope"></i>
+
+            CONTACT US
+
+        </span>
+
+
+        <h1 class="page-title mt-3">
+
+            We're Here to Help
+
+        </h1>
+
+
+        <p class="page-header-text">
+
+            Have a question or need assistance?
+            Get in touch with the AI Hospital team.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT INFORMATION + FORM
+===================================================== -->
+
+<section class="contact-section py-5">
+
+    <div class="container">
+
+        <div class="row g-5">
+
+
+            <!-- =================================================
+                 CONTACT INFORMATION
+            ================================================== -->
+
+            <div class="col-lg-5">
+
+                <span class="section-tag">
+
+                    GET IN TOUCH
+
+                </span>
+
+
+                <h2 class="section-title mt-3">
+
+                    Let's Connect With Us
+
+                </h2>
+
+
+                <p class="contact-intro">
+
+                    Whether you have a question about our
+                    healthcare services, AI-powered features
+                    or appointments, our team is ready to assist you.
+
+                </p>
+
+
+
+                <!-- ADDRESS -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-icon">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Hospital Address
+                        </h5>
+
+                        <p>
+
+                            AI Hospital Management System<br>
+                            Hyderabad, Telangana, India
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PHONE -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-icon">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Phone Number
+                        </h5>
+
+                        <p>
+                            +91 98765 43210
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-icon">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Email Address
+                        </h5>
+
+                        <p>
+                            support@aihospital.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- WORKING HOURS -->
+
+                <div class="contact-info-card">
+
+                    <div class="contact-icon">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h5>
+                            Working Hours
+                        </h5>
+
+                        <p>
+
+                            Monday – Saturday<br>
+                            9:00 AM – 6:00 PM
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONTACT FORM
+            ================================================== -->
+
+            <div class="col-lg-7">
+
+                <div class="contact-form-card">
+
+
+                    <!-- FORM HEADER -->
+
+                    <div class="contact-form-header">
+
+                        <h3>
+
+                            Send Us a Message
+
+                        </h3>
+
+
+                        <p>
+
+                            Fill in the form and our team will
+                            get back to you.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FORM -->
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('contact') }}">
+
+
+                        <!-- NAME + EMAIL -->
+
+                        <div class="row">
+
+
+                            <!-- NAME -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="name">
+
+                                    Your Name
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter your name"
+                                    autocomplete="name"
+                                    required>
+
+                            </div>
+
+
+
+                            <!-- EMAIL -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="email">
+
+                                    Email Address
+
+                                </label>
+
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                    autocomplete="email"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PHONE -->
+
+                        <div class="mb-3">
+
+                            <label for="phone">
+
+                                Phone Number
+
+                            </label>
+
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                class="form-control"
+                                placeholder="Enter your phone number"
+                                autocomplete="tel">
+
+                        </div>
+
+
+
+                        <!-- SUBJECT -->
+
+                        <div class="mb-3">
+
+                            <label for="subject">
+
+                                Subject
+
+                            </label>
+
+
+                            <select
+                                id="subject"
+                                name="subject"
+                                class="form-control"
+                                required>
+
+
+                                <option value="">
+
+                                    Select a subject
+
+                                </option>
+
+
+                                <option value="General Enquiry">
+
+                                    General Enquiry
+
+                                </option>
+
+
+                                <option value="Appointment">
+
+                                    Appointment
+
+                                </option>
+
+
+                                <option value="Hospital Services">
+
+                                    Hospital Services
+
+                                </option>
+
+
+                                <option value="AI Healthcare">
+
+                                    AI Healthcare
+
+                                </option>
+
+
+                                <option value="Technical Support">
+
+                                    Technical Support
+
+                                </option>
+
+
+                            </select>
+
+                        </div>
+
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="mb-4">
+
+                            <label for="message">
+
+                                Your Message
+
+                            </label>
+
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Write your message here..."
+                                required></textarea>
+
+                        </div>
+
+
+
+                        <!-- SUBMIT -->
+
+                        <button
+                            type="submit"
+                            class="btn custom-btn contact-submit">
+
+                            <i class="fa-solid fa-paper-plane me-2"></i>
+
+                            Send Message
+
+                        </button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EMERGENCY ASSISTANCE
+===================================================== -->
+
+<section class="emergency-section py-4">
+
+    <div class="container">
+
+        <div class="emergency-box">
+
+
+            <div class="emergency-icon">
+
+                <i class="fa-solid fa-truck-medical"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+
+                    Emergency Assistance
+
+                </h3>
+
+
+                <p>
+
+                    For medical emergencies, please contact
+                    your local emergency medical service or
+                    visit the nearest emergency department.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     APPOINTMENT CTA
+===================================================== -->
+
+<section class="contact-cta py-5">
+
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+
+            <span class="section-tag">
+
+                QUICK APPOINTMENT
+
+            </span>
+
+
+            <h2 class="mt-3">
+
+                Need an Appointment?
+
+            </h2>
+
+
+            <p>
+
+                Schedule your appointment with our
+                healthcare professionals.
+
+            </p>
+
+
+            <a
+                href="{{ url_for('appointment') }}"
+                class="btn custom-btn btn-lg mt-3">
+
+                <i class="fa-solid fa-calendar-check me-2"></i>
+
+                Book Appointment
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

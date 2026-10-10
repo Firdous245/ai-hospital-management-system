@@ -1,0 +1,416 @@
+/* =====================================================
+   APPOINTMENT PAGE
+===================================================== */
+
+
+/* ================= HEADER ================= */
+
+.appointment-header {
+    background:
+        linear-gradient(
+            135deg,
+            #effcfb,
+            #ffffff,
+            #eef9ff
+        );
+}
+
+
+/* ================= APPOINTMENT SECTION ================= */
+
+.appointment-section {
+    background: var(--background);
+}
+
+
+/* ================= BENEFITS ================= */
+
+.appointment-benefits {
+    padding-right: 30px;
+}
+
+
+.appointment-benefits h2 {
+    color: var(--primary-dark);
+
+    font-size: 32px;
+    font-weight: 800;
+
+    line-height: 1.25;
+}
+
+
+.appointment-benefits > p {
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-top: 15px;
+}
+
+
+/* ================= BENEFIT ITEM ================= */
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.benefit-icon {
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(20, 184, 166, 0.10);
+
+    color: var(--secondary);
+
+    font-size: 18px;
+}
+
+
+.benefit-item h5 {
+    color: var(--primary-dark);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    margin: 0 0 5px;
+}
+
+
+.benefit-item p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* ================= APPOINTMENT CARD ================= */
+
+.appointment-card {
+    padding: 35px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ================= CARD HEADER ================= */
+
+.appointment-card-header {
+    margin-bottom: 28px;
+}
+
+
+.appointment-card-header h3 {
+    color: var(--primary-dark);
+
+    font-size: 25px;
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+
+.appointment-card-header p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    margin: 0;
+}
+
+
+/* ================= FORM LABEL ================= */
+
+.appointment-form .form-label {
+    color: var(--primary-dark);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+
+/* ================= FORM CONTROL ================= */
+
+.appointment-form .form-control,
+.appointment-form .form-select {
+    min-height: 50px;
+
+    padding: 12px 15px;
+
+    color: var(--text);
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    box-shadow: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.appointment-form textarea.form-control {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+.appointment-form .form-control::placeholder {
+    color: #94a3b8;
+}
+
+
+.appointment-form .form-control:focus,
+.appointment-form .form-select:focus {
+    border-color: var(--secondary);
+
+    box-shadow:
+        0 0 0 3px rgba(20, 184, 166, 0.10);
+}
+
+
+/* ================= INPUT ICONS ================= */
+
+.input-group-text {
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+
+    color: var(--secondary);
+
+    border-radius: 12px 0 0 12px;
+}
+
+
+.input-group .form-control {
+    border-radius: 0 12px 12px 0;
+}
+
+
+/* ================= REQUIRED ================= */
+
+.required {
+    color: #ef4444;
+}
+
+
+/* ================= SUBMIT BUTTON ================= */
+
+.appointment-submit {
+    width: 100%;
+
+    min-height: 52px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--secondary);
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.appointment-submit:hover {
+    background: #0f9f91;
+
+    color: var(--white);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(20, 184, 166, 0.20);
+}
+
+
+/* ================= INFORMATION BOX ================= */
+
+.appointment-info {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #f0fdfa;
+
+    border: 1px solid rgba(20, 184, 166, 0.15);
+
+    border-radius: 12px;
+}
+
+
+.appointment-info i {
+    color: var(--secondary);
+
+    margin-top: 3px;
+}
+
+
+.appointment-info p {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* ================= CTA ================= */
+
+.appointment-cta {
+    background: var(--white);
+}
+
+
+.appointment-cta-box {
+    padding: 45px 30px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf9,
+            #f0f9ff
+        );
+
+    border: 1px solid var(--border);
+
+    text-align: center;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.appointment-cta-box h2 {
+    color: var(--primary-dark);
+
+    font-size: 28px;
+    font-weight: 800;
+}
+
+
+.appointment-cta-box p {
+    max-width: 650px;
+
+    margin: 10px auto 0;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 991px) {
+
+    .appointment-benefits {
+        padding-right: 0;
+
+        margin-bottom: 35px;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .appointment-card {
+        padding: 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .appointment-benefits h2 {
+        font-size: 27px;
+    }
+
+
+    .appointment-card-header h3 {
+        font-size: 22px;
+    }
+
+
+    .appointment-cta-box {
+        padding: 35px 20px;
+    }
+
+
+    .appointment-cta-box h2 {
+        font-size: 24px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .appointment-card {
+        padding: 20px;
+    }
+
+
+    .benefit-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 16px;
+    }
+
+
+    .benefit-item {
+        gap: 12px;
+    }
+
+}

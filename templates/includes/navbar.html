@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+
+    <div class="container">
+
+        <!-- Logo -->
+
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+
+            <i class="fa-solid fa-hospital"></i>
+
+            AI Hospital
+
+        </a>
+
+
+        <!-- Mobile Menu Button -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <!-- Navigation Links -->
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">
+                        About
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('services') }}">
+                        Services
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('doctors') }}">
+                        Doctors
+                    </a>
+                </li>
+
+                <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('appointment') }}">
+        Appointment
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('my_appointments') }}">
+        My Appointments
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('smart_queue') }}">
+        Smart Queue
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('contact') }}">
+        Contact
+    </a>
+</li>
+
+                <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+
+                    <a class="btn custom-btn"
+                       href="{{ url_for('login') }}">
+
+                        <i class="fa-solid fa-right-to-bracket me-1"></i>
+                        Login
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>

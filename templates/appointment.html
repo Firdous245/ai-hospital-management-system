@@ -1,0 +1,972 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Book Appointment | AI Hospital
+{% endblock %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/appointment.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================= PAGE HEADER ================= -->
+
+<section class="page-header appointment-header">
+
+    <div class="container text-center">
+
+        <span class="section-tag">
+            APPOINTMENT
+        </span>
+
+        <h1 class="page-title mt-3">
+            Book Your Appointment
+        </h1>
+
+        <p class="page-header-text">
+            Schedule an appointment with our healthcare
+            professionals through our digital platform.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FLASH MESSAGES ================= -->
+
+<div class="container mt-3">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="alert alert-{{ category }} alert-dismissible fade show"
+                     role="alert">
+
+                    {{ message }}
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close">
+                    </button>
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+</div>
+
+
+<!-- ================= APPOINTMENT FORM ================= -->
+
+<section class="appointment-section py-5">
+
+    <div class="container">
+
+        <div class="row g-5 align-items-start">
+
+
+            <!-- ================= INFORMATION ================= -->
+
+            <div class="col-lg-5">
+
+                <span class="section-tag">
+                    SIMPLE & CONVENIENT
+                </span>
+
+                <h2 class="section-title mt-3">
+                    Your Healthcare Journey Starts Here
+                </h2>
+
+                <p class="appointment-intro">
+
+                    Fill in the details and choose your preferred
+                    department, doctor, date and time.
+
+                </p>
+
+
+                <div class="appointment-benefits mt-4">
+
+
+                    <!-- Benefit 1 -->
+
+                    <div class="appointment-benefit">
+
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>
+                                Easy Scheduling
+                            </h5>
+
+                            <p>
+                                Choose a convenient date and time
+                                for your appointment.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Benefit 2 -->
+
+                    <div class="appointment-benefit">
+
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>
+                                Choose Your Doctor
+                            </h5>
+
+                            <p>
+                                Select a doctor according to your
+                                healthcare requirement.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Benefit 3 -->
+
+                    <div class="appointment-benefit">
+
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+
+                        <div>
+
+                            <h5>
+                                Secure Information
+                            </h5>
+
+                            <p>
+                                Your appointment information is
+                                handled through our secure system.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FORM ================= -->
+
+            <div class="col-lg-7">
+
+                <div class="appointment-card">
+
+
+                    <!-- Card Header -->
+
+                    <div class="appointment-card-header">
+
+                        <h3>
+                            Appointment Details
+                        </h3>
+
+                        <p>
+                            Please provide the required information.
+                        </p>
+
+                    </div>
+
+
+                    <!-- FORM -->
+
+                    <form method="POST"
+                          action="{{ url_for('appointment') }}">
+
+
+                        <!-- ================= PATIENT NAME + EMAIL ================= -->
+
+                        <div class="row">
+
+
+                            <!-- Patient Name -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="patient_name">
+                                    Patient Name
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fa-solid fa-user"></i>
+
+                                    <input
+                                        type="text"
+                                        id="patient_name"
+                                        name="patient_name"
+                                        class="form-control"
+                                        placeholder="Enter your name"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Email -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="email">
+                                    Email Address
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fa-solid fa-envelope"></i>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        class="form-control"
+                                        placeholder="Enter your email"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- ================= PHONE + DEPARTMENT ================= -->
+
+                        <div class="row">
+
+
+                            <!-- Phone -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="phone">
+                                    Phone Number
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fa-solid fa-phone"></i>
+
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        class="form-control"
+                                        placeholder="Enter phone number"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Department -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="department">
+                                    Department
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fa-solid fa-hospital"></i>
+
+                                    <select
+                                        id="department"
+                                        name="department"
+                                        class="form-control"
+                                        required>
+
+                                        <option value="">
+                                            Select Department
+                                        </option>
+
+                                        <option value="Cardiology">
+                                            Cardiology
+                                        </option>
+
+                                        <option value="Neurology">
+                                            Neurology
+                                        </option>
+
+                                        <option value="Pediatrics">
+                                            Pediatrics
+                                        </option>
+
+                                        <option value="Dermatology">
+                                            Dermatology
+                                        </option>
+
+                                        <option value="Orthopedics">
+                                            Orthopedics
+                                        </option>
+
+                                        <option value="General Medicine">
+                                            General Medicine
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- ================= DOCTOR ================= -->
+
+                        <div class="mb-3">
+
+                            <label for="doctor">
+                                Preferred Doctor
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-solid fa-user-doctor"></i>
+
+                                <select
+                                    id="doctor"
+                                    name="doctor"
+                                    class="form-control"
+                                    required>
+
+                                    <option value="">
+                                        Select Department First
+                                    </option>
+
+                                    {% for doctor in doctors %}
+
+                                        <option
+                                            value="{{ doctor.id }}"
+                                            data-department="{{ doctor.department }}"
+                                            data-availability="{{ doctor.availability }}"
+                                        >
+
+                                            {{ doctor.name }}
+                                            — {{ doctor.specialization }}
+                                            (₹{{ doctor.consultation_fee }})
+
+                                        </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Availability Message -->
+
+                            <small
+                                id="doctorAvailabilityMessage"
+                                class="d-block mt-2"
+                                style="font-weight: 600;">
+                            </small>
+
+                        </div>
+
+
+                        <!-- ================= DATE + TIME ================= -->
+
+                        <div class="row">
+
+
+                            <!-- Date -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="appointment_date">
+                                    Appointment Date
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fa-solid fa-calendar"></i>
+
+                                    <input
+                                        type="date"
+                                        id="appointment_date"
+                                        name="appointment_date"
+                                        class="form-control"
+                                        required>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Time -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label for="appointment_time">
+                                    Preferred Time
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                    <select
+                                        id="appointment_time"
+                                        name="appointment_time"
+                                        class="form-control"
+                                        required>
+
+                                        <option value="">
+                                            Select Time
+                                        </option>
+
+                                        <option value="09:00 AM">
+                                            09:00 AM
+                                        </option>
+
+                                        <option value="10:00 AM">
+                                            10:00 AM
+                                        </option>
+
+                                        <option value="11:00 AM">
+                                            11:00 AM
+                                        </option>
+
+                                        <option value="02:00 PM">
+                                            02:00 PM
+                                        </option>
+
+                                        <option value="03:00 PM">
+                                            03:00 PM
+                                        </option>
+
+                                        <option value="04:00 PM">
+                                            04:00 PM
+                                        </option>
+
+                                        <option value="05:00 PM">
+                                            05:00 PM
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- ================= REASON ================= -->
+
+                        <div class="mb-4">
+
+                            <label for="reason">
+                                Reason for Visit
+                            </label>
+
+                            <textarea
+                                id="reason"
+                                name="reason"
+                                class="form-control"
+                                rows="4"
+                                placeholder="Briefly describe your reason for appointment..."
+                                required></textarea>
+
+                        </div>
+
+
+                        <!-- ================= SUBMIT ================= -->
+
+                        <button
+                            type="submit"
+                            class="btn custom-btn appointment-submit">
+
+                            <i class="fa-solid fa-calendar-check me-2"></i>
+
+                            Book Appointment
+
+                        </button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NOTE ================= -->
+
+<section class="appointment-note-section pb-5">
+
+    <div class="container">
+
+        <div class="appointment-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <p>
+                Appointment requests are subject to doctor
+                availability. The hospital team may contact
+                you to confirm your appointment.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DOCTOR AVAILABILITY JAVASCRIPT ================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const departmentSelect =
+        document.getElementById("department");
+
+    const doctorSelect =
+        document.getElementById("doctor");
+
+    const dateInput =
+        document.getElementById("appointment_date");
+
+    const timeSelect =
+        document.getElementById("appointment_time");
+
+    const message =
+        document.getElementById("doctorAvailabilityMessage");
+
+
+    if (
+        !departmentSelect ||
+        !doctorSelect ||
+        !dateInput ||
+        !timeSelect
+    ) {
+        return;
+    }
+
+
+    /*
+        Store all doctors initially.
+        We use this list whenever the department changes.
+    */
+
+    const allDoctors =
+        Array.from(doctorSelect.options)
+            .slice(1)
+            .map(option => ({
+
+                value: option.value,
+
+                text: option.textContent.trim(),
+
+                department:
+                    option.dataset.department || "",
+
+                availability:
+                    option.dataset.availability || ""
+
+            }));
+
+
+    /*
+        Show doctors according to selected department
+        and booked doctor IDs.
+    */
+
+    function rebuildDoctorOptions(bookedIds = []) {
+
+        const department =
+            departmentSelect.value;
+
+        const currentValue =
+            doctorSelect.value;
+
+
+        doctorSelect.innerHTML = "";
+
+
+        /*
+            Placeholder
+        */
+
+        const placeholder =
+            document.createElement("option");
+
+        placeholder.value = "";
+
+        placeholder.textContent =
+            department
+                ? "Select Doctor"
+                : "Select Department First";
+
+        doctorSelect.appendChild(placeholder);
+
+
+        let availableCount = 0;
+
+
+        /*
+            Filter doctors by department
+        */
+
+        allDoctors
+
+            .filter(doctor =>
+                !department ||
+                doctor.department === department
+            )
+
+            .forEach(doctorData => {
+
+
+                const option =
+                    document.createElement("option");
+
+
+                const doctorId =
+                    Number(doctorData.value);
+
+
+                const isBooked =
+                    bookedIds.includes(doctorId);
+
+
+                const isUnavailable =
+                    doctorData.availability &&
+                    doctorData.availability
+                        .toLowerCase() !== "available";
+
+
+                option.value =
+                    doctorData.value;
+
+
+                option.dataset.department =
+                    doctorData.department;
+
+
+                option.dataset.availability =
+                    doctorData.availability;
+
+
+                /*
+                    BOOKED
+                */
+
+                if (isBooked) {
+
+                    option.textContent =
+                        doctorData.text +
+                        " — Not available at this time";
+
+                    option.disabled = true;
+
+                }
+
+
+                /*
+                    CURRENTLY UNAVAILABLE
+                */
+
+                else if (isUnavailable) {
+
+                    option.textContent =
+                        doctorData.text +
+                        " — Currently unavailable";
+
+                    option.disabled = true;
+
+                }
+
+
+                /*
+                    AVAILABLE
+                */
+
+                else {
+
+                    option.textContent =
+                        doctorData.text;
+
+                    availableCount++;
+
+                }
+
+
+                doctorSelect.appendChild(option);
+
+            });
+
+
+        /*
+            Restore previously selected doctor
+            if still available.
+        */
+
+        if (
+            currentValue &&
+            !bookedIds.includes(Number(currentValue))
+        ) {
+
+            const matchingOption =
+                Array.from(
+                    doctorSelect.options
+                ).find(option =>
+                    option.value === currentValue &&
+                    !option.disabled
+                );
+
+
+            if (matchingOption) {
+
+                doctorSelect.value =
+                    currentValue;
+
+            }
+
+        }
+
+
+        /*
+            Availability message
+        */
+
+        if (!department) {
+
+            message.textContent = "";
+
+        }
+
+        else if (
+            dateInput.value &&
+            timeSelect.value &&
+            availableCount === 0
+        ) {
+
+            message.textContent =
+                "No doctor is available for this department at the selected time.";
+
+            message.style.color =
+                "#dc3545";
+
+        }
+
+        else if (bookedIds.length > 0) {
+
+            message.textContent =
+                "Booked doctors are disabled for this date and time.";
+
+            message.style.color =
+                "#856404";
+
+        }
+
+        else {
+
+            message.textContent = "";
+
+        }
+
+    }
+
+
+    /*
+        Check doctor availability from Flask
+    */
+
+    async function updateDoctorAvailability() {
+
+
+        /*
+            First rebuild based only on
+            department and doctor availability.
+        */
+
+        rebuildDoctorOptions([]);
+
+
+        const department =
+            departmentSelect.value;
+
+        const appointmentDate =
+            dateInput.value;
+
+        const appointmentTime =
+            timeSelect.value;
+
+
+        /*
+            Don't send request until
+            all required fields are selected.
+        */
+
+        if (
+            !department ||
+            !appointmentDate ||
+            !appointmentTime
+        ) {
+
+            return;
+
+        }
+
+
+        try {
+
+
+            const params =
+                new URLSearchParams({
+
+                    department:
+                        department,
+
+                    appointment_date:
+                        appointmentDate,
+
+                    appointment_time:
+                        appointmentTime
+
+                });
+
+
+            /*
+                IMPORTANT:
+                This must match the Flask route.
+            */
+
+            const response =
+                await fetch(
+                    `/doctor-availability?${params.toString()}`
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Availability request failed"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            /*
+                Flask should return:
+                booked_doctor_ids
+            */
+
+            rebuildDoctorOptions(
+                data.booked_doctor_ids || []
+            );
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Doctor availability check failed:",
+                error
+            );
+
+
+            /*
+                Keep normal doctor list
+                if availability API fails.
+            */
+
+            rebuildDoctorOptions([]);
+
+        }
+
+    }
+
+
+    /*
+        Event listeners
+    */
+
+    departmentSelect.addEventListener(
+        "change",
+        updateDoctorAvailability
+    );
+
+
+    dateInput.addEventListener(
+        "change",
+        updateDoctorAvailability
+    );
+
+
+    timeSelect.addEventListener(
+        "change",
+        updateDoctorAvailability
+    );
+
+
+    /*
+        Initial doctor list
+    */
+
+    rebuildDoctorOptions([]);
+
+});
+
+</script>
+
+
+{% endblock %}

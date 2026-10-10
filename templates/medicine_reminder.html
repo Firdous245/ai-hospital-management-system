@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Medicine Reminder | AI Hospital</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                135deg,
+                #eef9f8,
+                #f7fbfc
+            );
+            color: #263238;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: #078b87;
+            padding: 18px 30px;
+            color: white;
+        }
+
+        .navbar-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.6);
+            padding: 9px 16px;
+            border-radius: 8px;
+        }
+
+        .home-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            color: #078b87;
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #6c757d;
+        }
+
+        /* ================= NOTIFICATION BUTTON ================= */
+
+        .notification-btn {
+            background: #078b87;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .notification-btn:hover {
+            background: #056d6a;
+        }
+
+        /* ================= MESSAGE ================= */
+
+        .message {
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #fff3cd;
+            color: #856404;
+            margin-bottom: 25px;
+        }
+
+        /* ================= GRID ================= */
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+
+        .card h2 {
+            color: #078b87;
+            margin-top: 0;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d5dddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #078b87;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #078b87;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: #056d6a;
+        }
+
+        .required {
+            color: #d9534f;
+        }
+
+        /* ================= REMINDER CARD ================= */
+
+        .reminder-card {
+            border: 1px solid #e3eeee;
+            border-radius: 13px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #fbfefe;
+        }
+
+        .medicine-name {
+            color: #078b87;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .dosage {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .reminder-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .info-box {
+            background: #f1f8f7;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .info-label {
+            display: block;
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-weight: bold;
+        }
+
+        .active-badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #e5f7e7;
+            color: #28752c;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ================= EMPTY ================= */
+
+        .empty {
+            text-align: center;
+            padding: 35px 10px;
+            color: #777;
+        }
+
+        .empty-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        /* ================= NOTE ================= */
+
+        .note {
+            margin-top: 20px;
+            padding: 13px;
+            background: #f5f8f8;
+            border-radius: 9px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-heading h1 {
+                font-size: 29px;
+            }
+
+            .reminder-info {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="navbar-content">
+
+        <div class="logo">
+            🏥 AI Hospital
+        </div>
+
+        <a
+            href="{{ url_for('home') }}"
+            class="home-btn"
+        >
+            ← Home
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+    <div class="page-heading">
+
+        <h1>
+            💊 Medicine Reminder
+        </h1>
+
+        <p>
+            Add your medicines and keep track of your medication schedule.
+        </p>
+
+
+        <!-- NOTIFICATION BUTTON -->
+
+       <button
+    id="notificationBtn"
+    type="button"
+    onclick="enableNotifications()"
+    style="
+        background: #078b87;
+        color: white;
+        border: none;
+        padding: 11px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    "
+>
+    🔔 Enable Medicine Notifications
+</button>
+
+
+    <!-- ================= FLASH ================= -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <div class="main-grid">
+
+
+        <!-- ================= ADD MEDICINE ================= -->
+
+        <div class="card">
+
+            <h2>
+                Add Medicine
+            </h2>
+
+
+            <form
+                action="{{ url_for('medicine_reminder') }}"
+                method="POST"
+            >
+
+                <div class="form-group">
+
+                    <label for="medicine_name">
+                        Medicine Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="medicine_name"
+                        name="medicine_name"
+                        placeholder="e.g. Paracetamol"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="dosage">
+                        Dosage
+                    </label>
+
+                    <input
+                        type="text"
+                        id="dosage"
+                        name="dosage"
+                        placeholder="e.g. 500 mg"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="reminder_time">
+                        Reminder Time
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="time"
+                        id="reminder_time"
+                        name="reminder_time"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="start_date">
+                        Start Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="start_date"
+                        name="start_date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="end_date">
+                        End Date
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="end_date"
+                        name="end_date"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="add-btn"
+                >
+                    ➕ Add Reminder
+                </button>
+
+            </form>
+
+
+            <div class="note">
+
+                💡 <strong>Note:</strong>
+                Enter the medicine schedule exactly as prescribed
+                by your doctor.
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= REMINDERS ================= -->
+
+        <div class="card">
+
+            <h2>
+                My Medicine Reminders
+            </h2>
+
+
+            {% if reminders %}
+
+                {% for reminder in reminders %}
+
+                    <div class="reminder-card">
+
+                        <div class="medicine-name">
+                            💊 {{ reminder.medicine_name }}
+                        </div>
+
+
+                        {% if reminder.dosage %}
+
+                            <div class="dosage">
+                                Dosage: {{ reminder.dosage }}
+                            </div>
+
+                        {% endif %}
+
+
+                        <div class="reminder-info">
+
+
+                            <div class="info-box">
+
+                                <span class="info-label">
+                                    Reminder Time
+                                </span>
+
+                                <span class="info-value">
+                                    {{ reminder.reminder_time }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <span class="info-label">
+                                    Status
+                                </span>
+
+                                <span class="info-value">
+                                    {{ reminder.status }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <span class="info-label">
+                                    Start Date
+                                </span>
+
+                                <span class="info-value">
+                                    {{ reminder.start_date }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <span class="info-label">
+                                    End Date
+                                </span>
+
+                                <span class="info-value">
+                                    {{ reminder.end_date }}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="active-badge">
+                            ● {{ reminder.status }}
+                        </span>
+
+
+                        <!-- EDIT -->
+
+                        <a
+                            href="{{ url_for(
+                                'edit_medicine',
+                                reminder_id=reminder.id
+                            ) }}"
+                            style="
+                                display:inline-block;
+                                background:#078b87;
+                                color:white;
+                                text-decoration:none;
+                                padding:9px 15px;
+                                border-radius:7px;
+                                margin-top:15px;
+                            "
+                        >
+                            ✏️ Edit
+                        </a>
+
+
+                        <!-- DELETE -->
+
+                        <form
+                            action="{{ url_for(
+                                'delete_medicine',
+                                reminder_id=reminder.id
+                            ) }}"
+                            method="POST"
+                            style="margin-top:12px;"
+                            onsubmit="
+                                return confirm(
+                                    'Are you sure you want to delete this reminder?'
+                                );
+                            "
+                        >
+
+                            <button
+                                type="submit"
+                                style="
+                                    background:#dc3545;
+                                    color:white;
+                                    border:none;
+                                    padding:9px 15px;
+                                    border-radius:7px;
+                                    cursor:pointer;
+                                "
+                            >
+                                🗑️ Delete
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        💊
+                    </div>
+
+                    <h3>
+                        No Medicine Reminders
+                    </h3>
+
+                    <p>
+                        Add your first medicine reminder
+                        using the form.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MEDICINE REMINDER JAVASCRIPT
+========================================================= -->
+<script>
+
+let notifiedReminders = {};
+
+
+// ==========================================
+// ENABLE NOTIFICATIONS
+// ==========================================
+
+function enableNotifications() {
+
+    if (!("Notification" in window)) {
+
+        alert(
+            "This browser does not support notifications."
+        );
+
+        return;
+    }
+
+
+    if (Notification.permission === "granted") {
+
+        updateNotificationButton();
+
+        new Notification(
+            "💊 Medicine Reminder",
+            {
+                body: "Medicine notifications are enabled!"
+            }
+        );
+
+        return;
+    }
+
+
+    Notification.requestPermission().then(function(permission) {
+
+        if (permission === "granted") {
+
+            updateNotificationButton();
+
+            new Notification(
+                "💊 Medicine Reminder",
+                {
+                    body: "Medicine notifications are now enabled."
+                }
+            );
+
+        } else {
+
+            alert(
+                "Please allow notifications from your browser."
+            );
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// UPDATE BUTTON
+// ==========================================
+
+function updateNotificationButton() {
+
+    const button =
+        document.getElementById(
+            "notificationBtn"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    if (
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ) {
+
+        button.innerText =
+            "🔔 Notifications Enabled";
+
+    } else {
+
+        button.innerText =
+            "🔔 Enable Medicine Notifications";
+
+    }
+
+}
+
+
+// ==========================================
+// CHECK MEDICINE REMINDERS
+// ==========================================
+
+function checkMedicineReminders() {
+
+    const now = new Date();
+
+
+    const currentTime =
+        now.getHours()
+        .toString()
+        .padStart(2, "0")
+        + ":"
+        +
+        now.getMinutes()
+        .toString()
+        .padStart(2, "0");
+
+
+    const currentDate =
+        now.getFullYear()
+        + "-"
+        +
+        (now.getMonth() + 1)
+            .toString()
+            .padStart(2, "0")
+        + "-"
+        +
+        now.getDate()
+            .toString()
+            .padStart(2, "0");
+
+
+    {% for reminder in reminders %}
+
+    {
+
+        const reminderId =
+            "{{ reminder.id }}";
+
+
+        const reminderTime =
+            "{{ reminder.reminder_time|string }}"
+            .substring(0, 5);
+
+
+        const startDate =
+            "{{ reminder.start_date|string }}";
+
+
+        const endDate =
+            "{{ reminder.end_date|string }}";
+
+
+        const medicineName =
+            "{{ reminder.medicine_name }}";
+
+
+        const status =
+            "{{ reminder.status }}";
+
+
+        // Unique key for this reminder + date + time
+
+        const notificationKey =
+            reminderId
+            + "_"
+            + currentDate
+            + "_"
+            + reminderTime;
+
+
+        // ======================================
+        // CHECK CONDITIONS
+        // ======================================
+
+        if (
+
+            currentTime === reminderTime
+
+            && currentDate >= startDate
+
+            && currentDate <= endDate
+
+            && status === "Active"
+
+            && !notifiedReminders[notificationKey]
+
+        ) {
+
+
+            // Mark as notified FIRST
+
+            notifiedReminders[notificationKey] =
+                true;
+
+
+            // ==================================
+            // SHOW NOTIFICATION
+            // ==================================
+
+            if (
+
+                "Notification" in window
+
+                && Notification.permission === "granted"
+
+            ) {
+
+                new Notification(
+                    "💊 Medicine Reminder",
+                    {
+                        body:
+                            "Time to take: "
+                            + medicineName
+                    }
+                );
+
+
+            } else {
+
+                alert(
+                    "💊 Medicine Reminder\n\n"
+                    +
+                    "Time to take: "
+                    +
+                    medicineName
+                );
+
+            }
+
+        }
+
+    }
+
+    {% endfor %}
+
+}
+
+
+// ==========================================
+// START SYSTEM
+// ==========================================
+
+updateNotificationButton();
+
+checkMedicineReminders();
+
+
+// Check every 10 seconds
+
+setInterval(
+    checkMedicineReminders,
+    10000
+);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Appointments | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<style>
+
+    .appointments-page {
+        padding: 60px 0;
+        background: #f4f8f9;
+        min-height: 80vh;
+    }
+
+    .appointment-history-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .appointment-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .appointment-table th {
+        background: #078c8c;
+        color: white;
+        padding: 14px;
+        text-align: left;
+    }
+
+    .appointment-table td {
+        padding: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .appointment-table tr:hover {
+        background: #f5fafa;
+    }
+
+    .status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .status-pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-approved {
+        background: #d1ecf1;
+        color: #0c5460;
+    }
+
+    .status-completed {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-cancelled {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .cancel-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+    .cancel-btn:hover {
+        background: #b02a37;
+        transform: translateY(-1px);
+    }
+
+    .cancelled-text {
+        color: #721c24;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .no-action {
+        color: #777;
+    }
+
+    .empty-appointments {
+        text-align: center;
+        padding: 50px;
+        color: #777;
+    }
+
+    @media (max-width: 900px) {
+
+        .appointment-history-card {
+            overflow-x: auto;
+        }
+
+        .appointment-table {
+            min-width: 1000px;
+        }
+
+    }
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="appointments-page">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+                APPOINTMENTS
+            </span>
+
+            <h1 class="page-title mt-3">
+                My Appointments
+            </h1>
+
+            <p class="page-header-text">
+                View your appointment history and current status.
+            </p>
+
+        </div>
+
+
+        <div class="appointment-history-card">
+
+            {% if appointments %}
+
+                <table class="appointment-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Doctor</th>
+                            <th>Department</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Reason</th>
+                            <th>Charges</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for appointment in appointments %}
+
+                            <tr>
+
+                                <td>
+                                    {{ appointment.id }}
+                                </td>
+
+                                <td>
+
+                                    <strong>
+                                        {{ appointment.doctor_name }}
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+                                        {{ appointment.specialization }}
+                                    </small>
+
+                                </td>
+
+                                <td>
+                                    {{ appointment.department }}
+                                </td>
+
+                                <td>
+                                    {{ appointment.appointment_date }}
+                                </td>
+
+                                <td>
+                                    {{ appointment.appointment_time }}
+                                </td>
+
+                                <td>
+                                    {{ appointment.reason or '-' }}
+                                </td>
+                                <td>
+                                    ₹{{ "%.2f"|format(appointment.charges) }}
+                                </td>
+                                <td>
+
+    {% if appointment.payment_status|lower == 'paid' %}
+
+        <span class="status status-completed">
+            Paid
+        </span>
+
+    {% else %}
+
+        <a
+            href="{{ url_for('demo_payment', appointment_id=appointment.id) }}"
+            class="btn btn-success btn-sm"
+        >
+            Pay Now
+        </a>
+
+    {% endif %}
+
+</td>
+
+                                <td>
+
+                                    {% set status_class =
+                                        appointment.status|lower
+                                        |replace(' ', '-') %}
+
+                                    <span
+                                        class="status status-{{ status_class }}"
+                                    >
+                                        {{ appointment.status }}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    {% if appointment.status|lower in ['pending', 'approved'] %}
+
+                                        <form
+                                            action="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}"
+                                            method="POST"
+                                            style="display:inline;"
+                                        >
+
+                                            <button
+                                                type="submit"
+                                                class="cancel-btn"
+                                                onclick="return confirm('Are you sure you want to cancel this appointment?')"
+                                            >
+                                                Cancel
+                                            </button>
+
+                                        </form>
+
+                                    {% elif appointment.status|lower == 'cancelled' %}
+
+                                        <span class="cancelled-text">
+                                            Cancelled
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="no-action">
+                                            -
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            {% else %}
+
+                <div class="empty-appointments">
+
+                    <i class="fa-solid fa-calendar-xmark fa-2x mb-3"></i>
+
+                    <h4>
+                        No Appointments Found
+                    </h4>
+
+                    <p>
+                        You have not booked any appointments yet.
+                    </p>
+
+                    <a
+                        href="{{ url_for('appointment') }}"
+                        class="btn custom-btn"
+                    >
+                        Book an Appointment
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

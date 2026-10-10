@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home | AI Hospital
+{% endblock %}
+
+{% block page_css %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}">
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- HERO SECTION -->
+
+<section class="hero-section">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="hero-badge">
+                    <i class="fa-solid fa-microchip"></i>
+                    AI Powered Healthcare
+                </span>
+
+                <h1 class="hero-title mt-3">
+
+                    Smart Healthcare.
+                    <span>Better Care.</span>
+
+                </h1>
+
+                <p class="hero-text">
+
+                    A modern AI-powered hospital management system
+                    designed to make healthcare smarter, faster
+                    and more efficient.
+
+                </p>
+
+                <div class="hero-buttons mt-4">
+
+                    <a href="{{ url_for('appointment') }}"
+                       class="btn custom-btn btn-lg">
+
+                        Book Appointment
+
+                    </a>
+
+                    <a href="{{ url_for('innovations') }}"
+                       class="btn btn-outline-primary btn-lg ms-2">
+
+                        Explore AI
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 text-center mt-5 mt-lg-0">
+
+                <img
+                    src="{{ url_for('static', filename='images/hero.png') }}"
+                    class="img-fluid hero-image"
+                    alt="AI Hospital">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SMART HEALTHCARE -->
+
+<section class="intro-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+                SMART HEALTHCARE
+            </span>
+
+            <h2 class="section-title mt-2">
+                Healthcare Management Reimagined
+            </h2>
+
+            <p class="section-text">
+
+                Our platform combines hospital management with
+                artificial intelligence to improve patient care,
+                hospital operations and decision making.
+
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <h4>
+                        Smart Patient Management
+                    </h4>
+
+                    <p>
+                        Manage patients, appointments and
+                        medical information efficiently.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    <h4>
+                        AI Based Solutions
+                    </h4>
+
+                    <p>
+                        Intelligent AI features help improve
+                        healthcare decision making.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <i class="fa-solid fa-shield-heart"></i>
+
+                    <h4>
+                        Secure Healthcare
+                    </h4>
+
+                    <p>
+                        Manage important healthcare information
+                        through a secure digital platform.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AI HIGHLIGHTS -->
+
+<section class="ai-highlight-section py-5">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="section-tag">
+                    ARTIFICIAL INTELLIGENCE
+                </span>
+
+                <h2 class="section-title mt-3">
+                    Intelligent Features for Modern Hospitals
+                </h2>
+
+                <p class="section-text">
+
+                    Our AI features help patients, doctors and
+                    administrators manage healthcare more effectively.
+
+                </p>
+
+                <div class="mt-4">
+
+                    <p>
+                        <i class="fa-solid fa-circle-check text-success me-2"></i>
+                        AI Symptom Checker
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-circle-check text-success me-2"></i>
+                        AI Healthcare Assistant
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-circle-check text-success me-2"></i>
+                        Smart Queue Management
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-circle-check text-success me-2"></i>
+                        Emergency Priority Score
+                    </p>
+
+                </div>
+
+                <a href="{{ url_for('innovations') }}"
+                   class="btn custom-btn mt-3">
+
+                    Explore AI Innovations
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+
+<section class="why-section py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-tag">
+                WHY CHOOSE AI HOSPITAL
+            </span>
+
+            <h2 class="section-title mt-2">
+                Built for Smarter Healthcare
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+
+                <div class="why-card">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <h5>Faster Operations</h5>
+
+                    <p>
+                        Reduce manual work and improve
+                        hospital workflow.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="why-card">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    <h5>AI Powered</h5>
+
+                    <p>
+                        Intelligent features support
+                        healthcare management.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="why-card">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <h5>Secure</h5>
+
+                    <p>
+                        Healthcare information is managed
+                        securely.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <div class="why-card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h5>Patient Focused</h5>
+
+                    <p>
+                        Designed to improve the patient
+                        healthcare experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta-section py-5">
+
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+            <h2>
+                Experience Smarter Healthcare
+            </h2>
+
+            <p>
+                Make hospital management simpler with
+                AI-powered technology.
+            </p>
+
+            <a href="{{ url_for('appointment') }}"
+               class="btn custom-btn btn-lg mt-3">
+
+                Book an Appointment
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
